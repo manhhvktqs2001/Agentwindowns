@@ -1,0 +1,121 @@
+# EDR Windows Agent Configuration File
+
+# Server Configuration
+server:
+  url: http://192.168.20.85:5000
+  timeout: 30
+  retry_interval: 10
+  max_retries: 5
+  heartbeat_interval: 30
+  reconnect_delay: 5
+
+# Agent Configuration
+agent:
+  name: ${HOSTNAME}-edr-agent
+  version: 2.0.0
+  log_level: INFO
+  max_log_size: 100  # MB
+  log_backup_count: 5
+  update_interval: 300  # 5 minutes
+  offline_cache_size: 1000
+
+# Monitoring Configuration
+monitoring:
+  process_monitoring: true
+  file_monitoring: true
+  network_monitoring: true
+  registry_monitoring: true
+  interval: 5  # seconds
+  batch_size: 50
+  send_interval: 30  # seconds
+
+# Security Configuration
+security:
+  anti_tamper: true
+  self_defense: true
+  encrypt_communication: false
+  verify_server_cert: false
+  allowed_processes:
+    - edr_agent.exe
+    - python.exe
+    - pythonw.exe
+
+# Actions Configuration
+actions:
+  allow_process_termination: true
+  allow_file_quarantine: true
+  allow_network_blocking: true
+  show_user_notifications: true
+  auto_response_enabled: true
+  response_timeout: 10  # seconds
+
+# UI Configuration
+ui:
+  show_tray_icon: true
+  show_notifications: true
+  notification_timeout: 5  # seconds
+  startup_notification: true
+  alert_sound: true
+
+# Performance Configuration
+performance:
+  max_cpu_usage: 10  # percentage
+  max_memory_usage: 200  # MB
+  thread_pool_size: 4
+  queue_max_size: 1000
+  cleanup_interval: 3600  # 1 hour
+
+# File Monitoring Paths
+file_monitoring:
+  watch_paths:
+    - C:\Windows\System32
+    - C:\Program Files
+    - C:\Program Files (x86)
+    - C:\Users\*\AppData
+    - C:\Users\*\Desktop
+    - C:\Users\*\Downloads
+  exclude_paths:
+    - C:\Windows\Temp
+    - C:\Windows\SoftwareDistribution
+    - C:\$Recycle.Bin
+  file_extensions:
+    - .exe
+    - .dll
+    - .bat
+    - .cmd
+    - .ps1
+    - .vbs
+    - .js
+    - .jar
+
+# Process Monitoring
+process_monitoring:
+  monitor_creation: true
+  monitor_termination: true
+  monitor_injection: true
+  suspicious_processes:
+    - cmd.exe
+    - powershell.exe
+    - wmic.exe
+    - reg.exe
+    - net.exe
+    - schtasks.exe
+
+# Network Monitoring
+network_monitoring:
+  monitor_connections: true
+  monitor_dns: true
+  suspicious_ports:
+    - 4444
+    - 5555
+    - 6666
+    - 1337
+    - 31337
+  blocked_ips: []
+
+# Alert Configuration
+alerts:
+  max_alerts_per_minute: 50
+  alert_aggregation: true
+  critical_alert_popup: true
+  log_all_alerts: true

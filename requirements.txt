@@ -1,0 +1,48 @@
+# EDR Windows Agent Requirements
+
+# Core Dependencies
+python-socketio[client]==5.8.0
+requests==2.31.0
+PyYAML==6.0.1
+
+# Windows System Monitoring
+psutil==5.9.5
+pywin32==306
+WMI==1.5.1
+
+# File System Monitoring
+watchdog==3.0.0
+
+# UI Components
+plyer==2.1.0
+win10toast==0.9
+Pillow==10.0.0
+
+# Security & Crypto
+cryptography==41.0.4
+hashlib-compat==1.0.1
+
+# Networking
+python-socketio[client]==5.8.0
+websocket-client==1.6.1
+
+# Data Processing
+ujson==5.8.0
+python-dateutil==2.8.2
+
+# Logging
+coloredlogs==15.0.1
+
+# Configuration
+python-dotenv==1.0.0
+
+# System Integration
+pywin32-ctypes==0.2.2
+pystray==0.19.4
+
+# Optional: Service Management
+pywin32==306
+
+# Development & Testing
+pytest==7.4.2
+pytest-cov==4.1.0
