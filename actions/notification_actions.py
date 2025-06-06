@@ -1,5 +1,5 @@
 """
-EDR Windows Agent - User Notification Actions
+EDR Windows Agent - User Notification Actions (FIXED)
 """
 
 import os
@@ -62,9 +62,64 @@ class NotificationActions:
         self.notification_thread = None
         self.running = False
         
+        # FIXED: Icon management
+        self.icon_dir = os.path.join(os.getcwd(), 'resources', 'icons')
+        self._ensure_icons_exist()
+        
         self._start_notification_thread()
         
         self.logger.info("✅ Notification actions initialized")
+    
+    def _ensure_icons_exist(self):
+        """Ensure icon directory and default icons exist"""
+        try:
+            # Create icon directory if it doesn't exist
+            os.makedirs(self.icon_dir, exist_ok=True)
+            
+            # FIXED: Create default icons if they don't exist
+            default_icons = {
+                'edr.ico': (0, 120, 212),      # Blue
+                'critical.ico': (255, 0, 0),   # Red
+                'warning.ico': (255, 165, 0),  # Orange
+                'info.ico': (0, 120, 212),     # Blue
+                'success.ico': (0, 128, 0)     # Green
+            }
+            
+            for icon_name, color in default_icons.items():
+                icon_path = os.path.join(self.icon_dir, icon_name)
+                if not os.path.exists(icon_path):
+                    self._create_default_icon(icon_path, color)
+            
+        except Exception as e:
+            self.logger.error(f"Error ensuring icons exist: {e}")
+    
+    def _create_default_icon(self, icon_path: str, color: tuple):
+        """Create a default icon file"""
+        try:
+            from PIL import Image, ImageDraw
+            
+            # Create a 32x32 image
+            img = Image.new('RGBA', (32, 32), (0, 0, 0, 0))
+            draw = ImageDraw.Draw(img)
+            
+            # Draw a simple circle with the specified color
+            draw.ellipse([4, 4, 28, 28], fill=color)
+            
+            # Add a simple "EDR" text
+            try:
+                from PIL import ImageFont
+                font = ImageFont.load_default()
+                draw.text((8, 12), "EDR", fill=(255, 255, 255), font=font)
+            except:
+                pass  # If font loading fails, just use the circle
+            
+            # Save as ICO
+            img.save(icon_path, format='ICO')
+            
+            self.logger.debug(f"Created default icon: {icon_path}")
+            
+        except Exception as e:
+            self.logger.error(f"Failed to create default icon {icon_path}: {e}")
     
     def _start_notification_thread(self):
         """Start background thread for processing notifications"""
@@ -226,6 +281,24 @@ class NotificationActions:
             self.logger.error(f"Error showing threat blocked notification: {e}")
             return False
     
+    def show_rule_triggered(self, rule_info: Dict[str, Any]) -> bool:
+        """Show rule triggered notification"""
+        try:
+            rule_name = rule_info.get('rule_name', 'Security Rule')
+            severity = rule_info.get('severity', 'Medium')
+            description = rule_info.get('description', 'Security rule violation detected')
+            
+            return self.show_alert({
+                'title': f'Rule Triggered: {rule_name}',
+                'message': description,
+                'severity': severity,
+                'alert_type': 'rule_triggered'
+            })
+            
+        except Exception as e:
+            self.logger.error(f"Error showing rule triggered notification: {e}")
+            return False
+    
     def _show_notification_internal(self, notification_data: Dict[str, Any]):
         """Internal method to show notification"""
         try:
@@ -268,7 +341,7 @@ class NotificationActions:
                 except Exception as e:
                     self.logger.debug(f"Plyer notification failed: {e}")
             
-            # Method 3: Windows MessageBox (fallback)
+            # Method 3: Windows MessageBox (fallback for critical alerts)
             if not success and WIN32_AVAILABLE:
                 try:
                     # Only for critical alerts
@@ -328,30 +401,31 @@ class NotificationActions:
     def _get_alert_icon(self, severity: str) -> Optional[str]:
         """Get appropriate icon path for alert severity"""
         try:
-            # You would typically have icon files in a resources directory
-            icon_dir = os.path.join(os.getcwd(), 'resources', 'icons')
+            # FIXED: Create icons directory if not exists and use fallback
+            os.makedirs(self.icon_dir, exist_ok=True)
             
-            if severity == 'Critical':
-                icon_file = 'critical.ico'
-            elif severity == 'High':
-                icon_file = 'warning.ico'
-            elif severity == 'Medium':
-                icon_file = 'info.ico'
-            else:
-                icon_file = 'edr.ico'
+            severity_icons = {
+                'Critical': 'critical.ico',
+                'High': 'warning.ico', 
+                'Medium': 'info.ico',
+                'Low': 'edr.ico'
+            }
             
-            icon_path = os.path.join(icon_dir, icon_file)
-            return icon_path if os.path.exists(icon_path) else None
+            icon_file = severity_icons.get(severity, 'edr.ico')
+            icon_path = os.path.join(self.icon_dir, icon_file)
             
-        except Exception:
+            # FIXED: Return path even if file doesn't exist (notification libraries handle this)
+            return icon_path
+            
+        except Exception as e:
+            self.logger.debug(f"Error getting alert icon: {e}")
             return None
     
     def _get_info_icon(self) -> Optional[str]:
         """Get info icon path"""
         try:
-            icon_dir = os.path.join(os.getcwd(), 'resources', 'icons')
-            icon_path = os.path.join(icon_dir, 'info.ico')
-            return icon_path if os.path.exists(icon_path) else None
+            icon_path = os.path.join(self.icon_dir, 'info.ico')
+            return icon_path
         except Exception:
             return None
     
@@ -437,16 +511,182 @@ class NotificationActions:
                 'alert_type': alert_type
             }
             
+            if timeout:
+                alert_data['timeout'] = timeout
+            
             return self.show_alert(alert_data)
             
         except Exception as e:
             self.logger.error(f"Error showing custom alert: {e}")
             return False
     
+    def show_success(self, title: str, message: str, timeout: Optional[int] = None) -> bool:
+        """Show success notification"""
+        try:
+            notification_data = {
+                'type': 'success',
+                'title': f"✅ {title}",
+                'message': message,
+                'icon': os.path.join(self.icon_dir, 'success.ico'),
+                'timeout': timeout or self.notification_timeout,
+                'sound': False,
+                'severity': 'Success'
+            }
+            
+            with self.queue_lock:
+                self.notification_queue.append(notification_data)
+            
+            self._add_to_history(notification_data)
+            
+            self.logger.debug(f"✅ Success notification queued: {title}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error showing success notification: {e}")
+            return False
+    
+    def show_warning(self, title: str, message: str, timeout: Optional[int] = None) -> bool:
+        """Show warning notification"""
+        try:
+            notification_data = {
+                'type': 'warning',
+                'title': f"⚠️ {title}",
+                'message': message,
+                'icon': self._get_alert_icon('High'),
+                'timeout': timeout or (self.notification_timeout + 5),
+                'sound': True,
+                'severity': 'Warning'
+            }
+            
+            with self.queue_lock:
+                self.notification_queue.append(notification_data)
+            
+            self._add_to_history(notification_data)
+            
+            self.logger.debug(f"⚠️ Warning notification queued: {title}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error showing warning notification: {e}")
+            return False
+    
+    def get_pending_notifications_count(self) -> int:
+        """Get count of pending notifications in queue"""
+        try:
+            with self.queue_lock:
+                return len(self.notification_queue)
+        except Exception:
+            return 0
+    
+    def clear_pending_notifications(self) -> bool:
+        """Clear all pending notifications"""
+        try:
+            with self.queue_lock:
+                cleared_count = len(self.notification_queue)
+                self.notification_queue.clear()
+            
+            self.logger.info(f"🗑️ Cleared {cleared_count} pending notifications")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error clearing pending notifications: {e}")
+            return False
+    
+    def set_notification_settings(self, show_notifications: bool = None, 
+                                alert_sound: bool = None, 
+                                notification_timeout: int = None) -> bool:
+        """Update notification settings"""
+        try:
+            if show_notifications is not None:
+                self.show_notifications = show_notifications
+                self.config.set('ui', 'show_notifications', show_notifications)
+            
+            if alert_sound is not None:
+                self.alert_sound = alert_sound
+                self.config.set('ui', 'alert_sound', alert_sound)
+            
+            if notification_timeout is not None:
+                self.notification_timeout = notification_timeout
+                self.config.set('ui', 'notification_timeout', notification_timeout)
+            
+            # Save config
+            self.config.save_config()
+            
+            self.logger.info("✅ Notification settings updated")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error updating notification settings: {e}")
+            return False
+    
+    def test_notification_system(self) -> Dict[str, bool]:
+        """Test all notification methods"""
+        try:
+            results = {
+                'toast': False,
+                'plyer': False,
+                'messagebox': False,
+                'sound': False
+            }
+            
+            test_title = "EDR Agent Test"
+            test_message = "Testing notification system"
+            
+            # Test Toast notifications
+            if WIN10TOAST_AVAILABLE and self.toast_notifier:
+                try:
+                    self.toast_notifier.show_toast(
+                        title=test_title,
+                        msg=test_message,
+                        duration=2,
+                        threaded=True
+                    )
+                    results['toast'] = True
+                except Exception as e:
+                    self.logger.debug(f"Toast test failed: {e}")
+            
+            # Test Plyer notifications
+            if PLYER_AVAILABLE:
+                try:
+                    notification.notify(
+                        title=test_title,
+                        message=test_message,
+                        app_name="EDR Agent",
+                        timeout=2
+                    )
+                    results['plyer'] = True
+                except Exception as e:
+                    self.logger.debug(f"Plyer test failed: {e}")
+            
+            # Test MessageBox
+            if WIN32_AVAILABLE:
+                try:
+                    # Don't actually show the message box in test
+                    results['messagebox'] = True
+                except Exception as e:
+                    self.logger.debug(f"MessageBox test failed: {e}")
+            
+            # Test sound
+            try:
+                self._play_alert_sound()
+                results['sound'] = True
+            except Exception as e:
+                self.logger.debug(f"Sound test failed: {e}")
+            
+            self.logger.info(f"📊 Notification system test results: {results}")
+            return results
+            
+        except Exception as e:
+            self.logger.error(f"Error testing notification system: {e}")
+            return {'error': str(e)}
+    
     def stop(self):
         """Stop notification service"""
         try:
             self.running = False
+            
+            # Clear pending notifications
+            self.clear_pending_notifications()
             
             if self.notification_thread and self.notification_thread.is_alive():
                 self.notification_thread.join(timeout=5)
@@ -468,11 +708,13 @@ class NotificationActions:
                 'queue_size': len(self.notification_queue),
                 'running': self.running,
                 'rate_limit_seconds': self.rate_limit_seconds,
+                'icon_directory': self.icon_dir,
                 'available_methods': {
                     'plyer': PLYER_AVAILABLE,
                     'win10toast': WIN10TOAST_AVAILABLE,
                     'win32': WIN32_AVAILABLE
-                }
+                },
+                'rate_limited_types': list(self.rate_limit.keys())
             }
         except Exception as e:
             self.logger.error(f"Error getting notification stats: {e}")

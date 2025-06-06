@@ -1,5 +1,5 @@
 """
-EDR Windows Agent - Server Connection Manager
+EDR Windows Agent - Server Connection Manager (FIXED)
 """
 
 import json
@@ -21,6 +21,7 @@ class ServerConnection:
         
         # Connection state
         self.connected = False
+        self.agent_id = None  # FIXED: Store agent ID from server
         self.last_heartbeat = None
         self.reconnect_attempts = 0
         self.max_reconnect_attempts = self.config.get('server', 'max_retries', 5)
@@ -41,6 +42,9 @@ class ServerConnection:
         # Threading
         self.connection_lock = threading.Lock()
         
+        # FIXED: Load agent ID if exists
+        self.agent_id = self.config.get('agent', 'agent_id')
+        
         self.logger.info("✅ Server connection initialized")
     
     def _setup_event_handlers(self):
@@ -57,6 +61,10 @@ class ServerConnection:
             
             # Send agent info immediately after connection
             self._send_agent_info()
+            
+            # FIXED: Join agent room for targeted messaging
+            if self.agent_id:
+                self.sio.emit('join_agent_room', {'agent_id': self.agent_id})
         
         @self.sio.event
         def disconnect():
@@ -102,7 +110,9 @@ class ServerConnection:
             """Handle rule updates from server"""
             try:
                 self.logger.info("📋 Received rule update")
-                # Process rule updates here
+                # FIXED: Better rule update handling
+                if self.agent and hasattr(self.agent, 'update_rules'):
+                    self.agent.update_rules(data.get('rules', []))
             except Exception as e:
                 self.logger.error(f"Error handling rule update: {e}")
         
@@ -111,6 +121,18 @@ class ServerConnection:
             """Handle heartbeat response"""
             self.last_heartbeat = datetime.utcnow()
             self.logger.debug("💓 Heartbeat acknowledged")
+            
+        @self.sio.event
+        def registration_complete(data):
+            """Handle registration completion"""
+            try:
+                self.agent_id = data.get('agent_id')
+                if self.agent_id:
+                    self.config.set('agent', 'agent_id', self.agent_id)
+                    self.config.save_config()
+                    self.logger.info(f"✅ Agent registered with ID: {self.agent_id}")
+            except Exception as e:
+                self.logger.error(f"Error handling registration: {e}")
     
     def start(self) -> bool:
         """Start connection to server"""
@@ -127,7 +149,8 @@ class ServerConnection:
                 server_url,
                 headers={
                     'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}',
-                    'X-Agent-Hostname': self.config.get_system_info().get('hostname', 'unknown')
+                    'X-Agent-Hostname': self.config.get_system_info().get('hostname', 'unknown'),
+                    'X-Agent-ID': self.agent_id or 'new'  # FIXED: Send agent ID if exists
                 },
                 timeout=self.config.get('server', 'timeout', 30)
             )
@@ -142,6 +165,12 @@ class ServerConnection:
         """Stop connection to server"""
         try:
             if self.sio.connected:
+                # FIXED: Send disconnect notification
+                self.sio.emit('agent_disconnect', {
+                    'agent_id': self.agent_id,
+                    'hostname': self.config.get_system_info().get('hostname'),
+                    'timestamp': datetime.utcnow().isoformat()
+                })
                 self.sio.disconnect()
             
             with self.connection_lock:
@@ -200,6 +229,7 @@ class ServerConnection:
             
             system_info = self.config.get_system_info()
             agent_info = {
+                'agent_id': self.agent_id,  # FIXED: Include agent ID
                 'hostname': system_info.get('hostname'),
                 'os_type': system_info.get('os_type'),
                 'os_version': system_info.get('os_version'),
@@ -207,7 +237,13 @@ class ServerConnection:
                 'ip_address': system_info.get('ip_address'),
                 'mac_address': system_info.get('mac_address'),
                 'agent_version': self.config.get('agent', 'version'),
-                'timestamp': datetime.utcnow().isoformat()
+                'timestamp': datetime.utcnow().isoformat(),
+                'capabilities': {  # FIXED: Send agent capabilities
+                    'process_monitoring': self.config.get('monitoring', 'process_monitoring', True),
+                    'file_monitoring': self.config.get('monitoring', 'file_monitoring', True),
+                    'network_monitoring': self.config.get('monitoring', 'network_monitoring', True),
+                    'response_actions': self.config.get('actions', 'auto_response_enabled', True)
+                }
             }
             
             self.sio.emit('agent_info', agent_info)
@@ -224,9 +260,24 @@ class ServerConnection:
             base_url = self.config.SERVER_URL.replace('/socket.io', '')
             register_url = f"{base_url}/api/agents/register"
             
+            # FIXED: Include more system information
+            enhanced_data = {
+                **registration_data,
+                'agent_id': self.agent_id,  # Send existing agent ID if any
+                'first_seen': datetime.utcnow().isoformat(),
+                'capabilities': {
+                    'process_monitoring': True,
+                    'file_monitoring': True,
+                    'network_monitoring': True,
+                    'response_actions': True,
+                    'quarantine': True,
+                    'network_blocking': True
+                }
+            }
+            
             response = requests.post(
                 register_url,
-                json=registration_data,
+                json=enhanced_data,
                 timeout=self.config.get('server', 'timeout', 30),
                 headers={
                     'Content-Type': 'application/json',
@@ -235,6 +286,21 @@ class ServerConnection:
             )
             
             if response.status_code in [200, 201]:
+                # FIXED: Handle server response properly
+                try:
+                    response_data = response.json()
+                    if 'agent_id' in response_data:
+                        self.agent_id = response_data['agent_id']
+                        self.config.set('agent', 'agent_id', self.agent_id)
+                        self.config.save_config()
+                    
+                    if 'rules' in response_data:
+                        # Store initial rules
+                        self.config.set('agent', 'rules', response_data['rules'])
+                        
+                except Exception as json_error:
+                    self.logger.warning(f"Could not parse registration response: {json_error}")
+                
                 self.logger.info("✅ Agent registered successfully")
                 return True
             else:
@@ -251,11 +317,16 @@ class ServerConnection:
             if not self.connected:
                 return False
             
+            # FIXED: Include more status information
             heartbeat_data = {
+                'agent_id': self.agent_id,
                 'hostname': self.config.get_system_info().get('hostname'),
                 'timestamp': datetime.utcnow().isoformat(),
                 'status': 'Online',
-                'agent_version': self.config.get('agent', 'version')
+                'agent_version': self.config.get('agent', 'version'),
+                'cpu_usage': self._get_cpu_usage(),
+                'memory_usage': self._get_memory_usage(),
+                'disk_usage': self._get_disk_usage()
             }
             
             self.sio.emit('heartbeat', heartbeat_data)
@@ -272,11 +343,15 @@ class ServerConnection:
             if not self.connected:
                 return False
             
-            # Add metadata
-            log_data['hostname'] = self.config.get_system_info().get('hostname')
-            log_data['timestamp'] = datetime.utcnow().isoformat()
+            # FIXED: Add agent identification
+            enhanced_log_data = {
+                **log_data,
+                'agent_id': self.agent_id,
+                'hostname': self.config.get_system_info().get('hostname'),
+                'timestamp': datetime.utcnow().isoformat()
+            }
             
-            self.sio.emit('logs', log_data)
+            self.sio.emit('logs', enhanced_log_data)
             self.logger.debug(f"📤 Logs sent: {sum(len(v) if isinstance(v, list) else 1 for v in log_data.values())} events")
             return True
             
@@ -290,17 +365,22 @@ class ServerConnection:
             base_url = self.config.SERVER_URL.replace('/socket.io', '')
             logs_url = f"{base_url}/api/logs"
             
-            # Add metadata
-            log_data['hostname'] = self.config.get_system_info().get('hostname')
-            log_data['timestamp'] = datetime.utcnow().isoformat()
+            # FIXED: Add agent identification
+            enhanced_log_data = {
+                **log_data,
+                'agent_id': self.agent_id,
+                'hostname': self.config.get_system_info().get('hostname'),
+                'timestamp': datetime.utcnow().isoformat()
+            }
             
             response = requests.post(
                 logs_url,
-                json=log_data,
+                json=enhanced_log_data,
                 timeout=self.config.get('server', 'timeout', 30),
                 headers={
                     'Content-Type': 'application/json',
-                    'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}'
+                    'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}',
+                    'X-Agent-ID': self.agent_id or 'unknown'
                 }
             )
             
@@ -325,7 +405,11 @@ class ServerConnection:
             
             response = requests.get(
                 rules_url,
-                params={'hostname': hostname},
+                params={
+                    'hostname': hostname,
+                    'agent_id': self.agent_id,  # FIXED: Include agent ID
+                    'os_type': 'Windows'
+                },
                 timeout=self.config.get('server', 'timeout', 30),
                 headers={'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}'}
             )
@@ -345,9 +429,17 @@ class ServerConnection:
     def report_alert(self, alert_data: Dict[str, Any]) -> bool:
         """Report alert to server"""
         try:
+            # FIXED: Add agent identification
+            enhanced_alert = {
+                **alert_data,
+                'agent_id': self.agent_id,
+                'hostname': self.config.get_system_info().get('hostname'),
+                'timestamp': datetime.utcnow().isoformat()
+            }
+            
             if self.connected:
                 # Try Socket.IO first
-                self.sio.emit('agent_alert', alert_data)
+                self.sio.emit('agent_alert', enhanced_alert)
                 return True
             else:
                 # Fallback to HTTP
@@ -356,11 +448,12 @@ class ServerConnection:
                 
                 response = requests.post(
                     alert_url,
-                    json=alert_data,
+                    json=enhanced_alert,
                     timeout=self.config.get('server', 'timeout', 30),
                     headers={
                         'Content-Type': 'application/json',
-                        'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}'
+                        'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}',
+                        'X-Agent-ID': self.agent_id or 'unknown'
                     }
                 )
                 
@@ -369,6 +462,30 @@ class ServerConnection:
         except Exception as e:
             self.logger.error(f"Error reporting alert: {e}")
             return False
+    
+    def _get_cpu_usage(self) -> float:
+        """Get current CPU usage"""
+        try:
+            import psutil
+            return psutil.cpu_percent(interval=1)
+        except Exception:
+            return 0.0
+    
+    def _get_memory_usage(self) -> float:
+        """Get current memory usage percentage"""
+        try:
+            import psutil
+            return psutil.virtual_memory().percent
+        except Exception:
+            return 0.0
+    
+    def _get_disk_usage(self) -> float:
+        """Get current disk usage percentage"""
+        try:
+            import psutil
+            return psutil.disk_usage('C:').percent
+        except Exception:
+            return 0.0
     
     def is_connected(self) -> bool:
         """Check if connected to server"""
@@ -379,6 +496,7 @@ class ServerConnection:
         return {
             'connected': self.connected,
             'socket_connected': self.sio.connected,
+            'agent_id': self.agent_id,
             'server_url': self.config.SERVER_URL,
             'last_heartbeat': self.last_heartbeat.isoformat() if self.last_heartbeat else None,
             'reconnect_attempts': self.reconnect_attempts,
