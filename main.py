@@ -180,6 +180,52 @@ def parse_arguments():
 
 def main():
     """Main entry point"""
+    try:
+        # Initialize logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        logger = logging.getLogger(__name__)
+        logger.info("EDR Agent logging initialized")
+        
+        # Print banner
+        print("🖥️ EDR Windows Agent v2.0")
+        print("========================================")
+        
+        # Check requirements
+        agent_main = EDRAgentMain()
+        if not agent_main.check_requirements():
+            sys.exit(1)
+        
+        if args.check:
+            print("✅ All requirements satisfied")
+            sys.exit(0)
+        
+        # Create directories
+        agent_main.create_directories()
+        
+        # Load configuration
+        config = AgentConfig()
+        if args.server:
+            config.SERVER_URL = args.server
+        logger.info(f"Server URL: {config.SERVER_URL}")
+        
+        # Initialize agent
+        agent_main.agent = EDRAgent(config)
+        logger.info("✅ EDR Agent initialized")
+        
+        # Start agent
+        logger.info("🚀 Starting EDR Agent...")
+        agent_thread = agent_main.agent.start()
+        
+        # Start system tray
+        if not args.no_ui:
+            try:
+                from ui.tray_icon import SystemTrayIcon
+                agent_main.tray_icon = SystemTrayIcon(agent_main.agent)
+                agent_main.tray_icon.start()
+                logger.info("✅ System tray started")
     print("🖥️ EDR Windows Agent v2.0")
     print("=" * 40)
     

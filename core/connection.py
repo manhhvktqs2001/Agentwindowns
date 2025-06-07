@@ -152,7 +152,7 @@ class ServerConnection:
                     'X-Agent-Hostname': self.config.get_system_info().get('hostname', 'unknown'),
                     'X-Agent-ID': self.agent_id or 'new'
                 },
-                timeout=self.config.get('server', 'timeout', 30)
+                wait_timeout=self.config.get('server', 'timeout', 30)
             )
             
             return True

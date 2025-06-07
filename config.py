@@ -214,7 +214,7 @@ class AgentConfig:
             return system_info
             
         except Exception as e:
-            print(f"Error getting system info: {e}")
+            print("Error getting system info: {}".format(str(e)))
             return {
                 'hostname': socket.gethostname(),
                 'os_type': 'Windows',

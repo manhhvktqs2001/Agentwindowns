@@ -10,6 +10,9 @@ import logging
 import threading
 from datetime import datetime
 from typing import Dict, List, Any, Optional
+import socket
+import platform
+import uuid
 
 # Fixed imports - use absolute imports
 from core.connection import ServerConnection
@@ -868,3 +871,38 @@ class EDRAgent:
             return psutil.disk_usage('C:').percent
         except Exception:
             return 0.0
+
+    def get_system_info(self):
+        """Get system information"""
+        try:
+            # Get hostname
+            hostname = socket.gethostname()
+            
+            # Get OS info
+            os_info = platform.platform()
+            
+            # Get IP address
+            ip_address = socket.gethostbyname(hostname)
+            
+            # Get MAC address
+            mac_address = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) 
+                                  for elements in range(0,2*6,2)][::-1])
+            
+            # Log system info
+            self.logger.info(f"System: {hostname} - {os_info}")
+            
+            return {
+                'hostname': hostname,
+                'os': os_info,
+                'ip_address': ip_address,
+                'mac_address': mac_address
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error getting system info: {str(e)}")
+            return {
+                'hostname': 'unknown',
+                'os': 'unknown',
+                'ip_address': 'unknown',
+                'mac_address': 'unknown'
+            }

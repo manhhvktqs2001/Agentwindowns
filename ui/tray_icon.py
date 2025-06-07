@@ -131,20 +131,40 @@ class SystemTrayIcon:
             self.logger.error(f"Failed to start system tray: {e}")
     
     def stop(self):
-        """Stop system tray icon"""
+        """Stop the tray icon"""
         try:
-            self.running = False
-            
             if self.icon:
                 self.icon.stop()
+                self.icon = None
             
-            if self.tray_thread and self.tray_thread.is_alive():
-                self.tray_thread.join(timeout=5)
+            # Stop notification thread
+            if self.notification_thread and self.notification_thread.is_alive():
+                self.notification_thread.join(timeout=1.0)
             
-            self.logger.info("🛑 System tray icon stopped")
+            self.logger.info("✅ System tray icon stopped")
             
         except Exception as e:
-            self.logger.error(f"Error stopping system tray: {e}")
+            self.logger.error(f"Error stopping system tray: {str(e)}")
+    
+    def cleanup(self):
+        """Cleanup resources"""
+        try:
+            self.stop()
+            
+            # Remove icon files
+            if os.path.exists(self.icon_dir):
+                for file in os.listdir(self.icon_dir):
+                    try:
+                        os.remove(os.path.join(self.icon_dir, file))
+                    except:
+                        pass
+                try:
+                    os.rmdir(self.icon_dir)
+                except:
+                    pass
+                    
+        except Exception as e:
+            self.logger.error(f"Error during cleanup: {str(e)}")
     
     def _run_tray(self):
         """Run the system tray icon"""
