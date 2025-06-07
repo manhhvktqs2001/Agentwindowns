@@ -1,5 +1,5 @@
 """
-EDR Windows Agent - Main Agent Class (FIXED)
+EDR Windows Agent - Main Agent Class (COMPLETE)
 """
 
 import os
@@ -11,14 +11,15 @@ import threading
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 
-from .connection import ServerConnection
-from .scheduler import TaskScheduler
-from ..monitors.process_monitor import ProcessMonitor
-from ..monitors.file_monitor import FileMonitor  
-from ..monitors.network_monitor import NetworkMonitor
-from ..actions.process_actions import ProcessActions
-from ..actions.notification_actions import NotificationActions
-from ..utils.log_sender import LogSender
+# Fixed imports - use absolute imports
+from core.connection import ServerConnection
+from core.scheduler import TaskScheduler
+from monitors.process_monitor import ProcessMonitor
+from monitors.file_monitor import FileMonitor  
+from monitors.network_monitor import NetworkMonitor
+from actions.process_actions import ProcessActions
+from actions.notification_actions import NotificationActions
+from utils.log_sender import LogSender
 
 class EDRAgent:
     """Main EDR Agent class"""
@@ -51,11 +52,11 @@ class EDRAgent:
         }
         self.buffer_lock = threading.Lock()
         
-        # FIXED: Add rules storage and management
+        # Add rules storage and management
         self.active_rules = []
         self.rules_lock = threading.Lock()
         
-        # FIXED: Add statistics tracking
+        # Add statistics tracking
         self.stats = {
             'start_time': None,
             'events_processed': 0,
@@ -99,7 +100,7 @@ class EDRAgent:
             self.process_actions = ProcessActions(self.config)
             self.notification_actions = NotificationActions(self.config)
             
-            # FIXED: Load initial rules
+            # Load initial rules
             self._load_initial_rules()
             
             self.logger.info("✅ All components initialized")
@@ -133,7 +134,7 @@ class EDRAgent:
             # Start heartbeat
             self._start_heartbeat()
             
-            # FIXED: Start rule checking
+            # Start rule checking
             self._start_rule_checking()
             
             # Start main agent thread
@@ -204,7 +205,7 @@ class EDRAgent:
             success = self.connection.register_agent(registration_data)
             if success:
                 self.logger.info("✅ Agent registered successfully")
-                # FIXED: Get initial rules after registration
+                # Get initial rules after registration
                 self._fetch_rules_from_server()
             else:
                 self.logger.warning("⚠️ Agent registration failed")
@@ -293,7 +294,7 @@ class EDRAgent:
                     self.logger.warning("⚠️ Server connection lost, attempting reconnect...")
                     self.connection.reconnect()
                 
-                # FIXED: Periodic health check
+                # Periodic health check
                 self._perform_health_check()
                 
                 time.sleep(1)
@@ -305,7 +306,7 @@ class EDRAgent:
     def _on_process_event(self, event_data: Dict[str, Any]):
         """Handle process monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid process event data format")
                 return
@@ -316,13 +317,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'process')
             
             with self.buffer_lock:
                 self.data_buffer['processes'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['processes']) > max_buffer:
                     # Remove oldest entries
@@ -336,7 +337,7 @@ class EDRAgent:
     def _on_file_event(self, event_data: Dict[str, Any]):
         """Handle file monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid file event data format")
                 return
@@ -347,13 +348,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'file')
             
             with self.buffer_lock:
                 self.data_buffer['files'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['files']) > max_buffer:
                     # Remove oldest entries
@@ -367,7 +368,7 @@ class EDRAgent:
     def _on_network_event(self, event_data: Dict[str, Any]):
         """Handle network monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid network event data format")
                 return
@@ -378,13 +379,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'network')
             
             with self.buffer_lock:
                 self.data_buffer['networks'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['networks']) > max_buffer:
                     # Remove oldest entries
@@ -442,9 +443,7 @@ class EDRAgent:
         try:
             process_name = event_data.get('process_name', '').lower()
             command_line = event_data.get('command_line', '').lower()
-            executable_path = event_data.get('executable_path', '').lower()
             
-            # Simple pattern matching - in production this would be more sophisticated
             rule_name = rule.get('rule_name', '').lower()
             
             if 'powershell' in rule_name and 'powershell' in process_name:
@@ -462,7 +461,6 @@ class EDRAgent:
     def _check_file_rule(self, rule: Dict[str, Any], event_data: Dict[str, Any]) -> bool:
         """Check file rule against event"""
         try:
-            file_name = event_data.get('file_name', '').lower()
             file_path = event_data.get('file_path', '').lower()
             
             rule_name = rule.get('rule_name', '').lower()
@@ -482,14 +480,11 @@ class EDRAgent:
     def _check_network_rule(self, rule: Dict[str, Any], event_data: Dict[str, Any]) -> bool:
         """Check network rule against event"""
         try:
-            remote_address = event_data.get('remote_address', '')
-            remote_port = event_data.get('remote_port', 0)
-            
             rule_name = rule.get('rule_name', '').lower()
             
             if 'suspicious' in rule_name and event_data.get('is_suspicious', False):
                 return True
-            elif 'c2' in rule_name and event_data.get('detection_reason', '').find('c2') >= 0:
+            elif 'c2' in rule_name and 'c2' in event_data.get('detection_reason', ''):
                 return True
             
             return False
@@ -561,12 +556,11 @@ class EDRAgent:
                         
             elif 'file' in event_type:
                 # Quarantine file
-                file_path = event_data.get('file_path')
                 process_id = event_data.get('process_id')
-                if file_path and process_id and self.process_actions:
+                if process_id and self.process_actions:
                     success = self.process_actions.quarantine_process_executable(process_id)
                     if success:
-                        self.logger.info(f"🔒 Quarantined file {file_path} due to rule {rule.get('rule_name')}")
+                        self.logger.info(f"🔒 Quarantined file due to rule {rule.get('rule_name')}")
                         
         except Exception as e:
             self.logger.error(f"Error executing blocking action: {e}")
@@ -730,7 +724,6 @@ class EDRAgent:
         """Handle block network command"""
         try:
             ip_address = params.get('ip_address')
-            port = params.get('port')
             process_id = params.get('process_id')
             
             if ip_address and self.network_monitor:
@@ -749,13 +742,12 @@ class EDRAgent:
     def _handle_quarantine_file_command(self, params: Dict[str, Any]):
         """Handle quarantine file command"""
         try:
-            file_path = params.get('file_path')
             process_id = params.get('process_id')
             
             if process_id and self.process_actions:
                 success = self.process_actions.quarantine_process_executable(process_id)
                 if success:
-                    self.logger.info(f"🔒 File quarantined by server command: {file_path}")
+                    self.logger.info(f"🔒 File quarantined by server command")
             
         except Exception as e:
             self.logger.error(f"Error quarantining file: {e}")

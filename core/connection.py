@@ -1,5 +1,6 @@
 """
 EDR Windows Agent - Server Connection Manager (FIXED)
+Sửa lỗi import typing annotations
 """
 
 import json
@@ -8,7 +9,7 @@ import logging
 import threading
 import requests
 import socketio
-from typing import Dict, Any, Optional, Callable
+from typing import Dict, Any, Optional, Callable, List  # ← THÊM List vào đây
 from datetime import datetime
 
 class ServerConnection:
@@ -21,7 +22,7 @@ class ServerConnection:
         
         # Connection state
         self.connected = False
-        self.agent_id = None  # FIXED: Store agent ID from server
+        self.agent_id = None
         self.last_heartbeat = None
         self.reconnect_attempts = 0
         self.max_reconnect_attempts = self.config.get('server', 'max_retries', 5)
@@ -42,7 +43,7 @@ class ServerConnection:
         # Threading
         self.connection_lock = threading.Lock()
         
-        # FIXED: Load agent ID if exists
+        # Load agent ID if exists
         self.agent_id = self.config.get('agent', 'agent_id')
         
         self.logger.info("✅ Server connection initialized")
@@ -62,7 +63,7 @@ class ServerConnection:
             # Send agent info immediately after connection
             self._send_agent_info()
             
-            # FIXED: Join agent room for targeted messaging
+            # Join agent room for targeted messaging
             if self.agent_id:
                 self.sio.emit('join_agent_room', {'agent_id': self.agent_id})
         
@@ -110,7 +111,6 @@ class ServerConnection:
             """Handle rule updates from server"""
             try:
                 self.logger.info("📋 Received rule update")
-                # FIXED: Better rule update handling
                 if self.agent and hasattr(self.agent, 'update_rules'):
                     self.agent.update_rules(data.get('rules', []))
             except Exception as e:
@@ -150,7 +150,7 @@ class ServerConnection:
                 headers={
                     'User-Agent': f'EDR-Agent/{self.config.get("agent", "version")}',
                     'X-Agent-Hostname': self.config.get_system_info().get('hostname', 'unknown'),
-                    'X-Agent-ID': self.agent_id or 'new'  # FIXED: Send agent ID if exists
+                    'X-Agent-ID': self.agent_id or 'new'
                 },
                 timeout=self.config.get('server', 'timeout', 30)
             )
@@ -165,7 +165,7 @@ class ServerConnection:
         """Stop connection to server"""
         try:
             if self.sio.connected:
-                # FIXED: Send disconnect notification
+                # Send disconnect notification
                 self.sio.emit('agent_disconnect', {
                     'agent_id': self.agent_id,
                     'hostname': self.config.get_system_info().get('hostname'),
@@ -229,7 +229,7 @@ class ServerConnection:
             
             system_info = self.config.get_system_info()
             agent_info = {
-                'agent_id': self.agent_id,  # FIXED: Include agent ID
+                'agent_id': self.agent_id,
                 'hostname': system_info.get('hostname'),
                 'os_type': system_info.get('os_type'),
                 'os_version': system_info.get('os_version'),
@@ -238,7 +238,7 @@ class ServerConnection:
                 'mac_address': system_info.get('mac_address'),
                 'agent_version': self.config.get('agent', 'version'),
                 'timestamp': datetime.utcnow().isoformat(),
-                'capabilities': {  # FIXED: Send agent capabilities
+                'capabilities': {
                     'process_monitoring': self.config.get('monitoring', 'process_monitoring', True),
                     'file_monitoring': self.config.get('monitoring', 'file_monitoring', True),
                     'network_monitoring': self.config.get('monitoring', 'network_monitoring', True),
@@ -260,10 +260,10 @@ class ServerConnection:
             base_url = self.config.SERVER_URL.replace('/socket.io', '')
             register_url = f"{base_url}/api/agents/register"
             
-            # FIXED: Include more system information
+            # Include more system information
             enhanced_data = {
                 **registration_data,
-                'agent_id': self.agent_id,  # Send existing agent ID if any
+                'agent_id': self.agent_id,
                 'first_seen': datetime.utcnow().isoformat(),
                 'capabilities': {
                     'process_monitoring': True,
@@ -286,7 +286,6 @@ class ServerConnection:
             )
             
             if response.status_code in [200, 201]:
-                # FIXED: Handle server response properly
                 try:
                     response_data = response.json()
                     if 'agent_id' in response_data:
@@ -295,7 +294,6 @@ class ServerConnection:
                         self.config.save_config()
                     
                     if 'rules' in response_data:
-                        # Store initial rules
                         self.config.set('agent', 'rules', response_data['rules'])
                         
                 except Exception as json_error:
@@ -317,7 +315,6 @@ class ServerConnection:
             if not self.connected:
                 return False
             
-            # FIXED: Include more status information
             heartbeat_data = {
                 'agent_id': self.agent_id,
                 'hostname': self.config.get_system_info().get('hostname'),
@@ -343,7 +340,6 @@ class ServerConnection:
             if not self.connected:
                 return False
             
-            # FIXED: Add agent identification
             enhanced_log_data = {
                 **log_data,
                 'agent_id': self.agent_id,
@@ -365,7 +361,6 @@ class ServerConnection:
             base_url = self.config.SERVER_URL.replace('/socket.io', '')
             logs_url = f"{base_url}/api/logs"
             
-            # FIXED: Add agent identification
             enhanced_log_data = {
                 **log_data,
                 'agent_id': self.agent_id,
@@ -407,7 +402,7 @@ class ServerConnection:
                 rules_url,
                 params={
                     'hostname': hostname,
-                    'agent_id': self.agent_id,  # FIXED: Include agent ID
+                    'agent_id': self.agent_id,
                     'os_type': 'Windows'
                 },
                 timeout=self.config.get('server', 'timeout', 30),
@@ -429,7 +424,6 @@ class ServerConnection:
     def report_alert(self, alert_data: Dict[str, Any]) -> bool:
         """Report alert to server"""
         try:
-            # FIXED: Add agent identification
             enhanced_alert = {
                 **alert_data,
                 'agent_id': self.agent_id,
@@ -438,11 +432,9 @@ class ServerConnection:
             }
             
             if self.connected:
-                # Try Socket.IO first
                 self.sio.emit('agent_alert', enhanced_alert)
                 return True
             else:
-                # Fallback to HTTP
                 base_url = self.config.SERVER_URL.replace('/socket.io', '')
                 alert_url = f"{base_url}/api/alerts"
                 

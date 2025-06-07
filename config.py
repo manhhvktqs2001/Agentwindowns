@@ -1,5 +1,5 @@
 """
-EDR Windows Agent Configuration
+EDR Windows Agent Configuration (FIXED)
 """
 
 import os
@@ -193,7 +193,7 @@ class AgentConfig:
         self.config_data[section][key] = value
     
     def get_system_info(self) -> Dict[str, Any]:
-        """Get system information"""
+        """Get system information - FIXED"""
         try:
             import psutil
             
@@ -219,7 +219,11 @@ class AgentConfig:
                 'hostname': socket.gethostname(),
                 'os_type': 'Windows',
                 'os_version': platform.platform(),
-                'architecture': platform.architecture()[0]
+                'architecture': platform.architecture()[0],
+                'ip_address': self._get_local_ip(),
+                'mac_address': self._get_mac_address(),
+                'domain': os.environ.get('USERDOMAIN', 'WORKGROUP'),
+                'username': os.environ.get('USERNAME', 'Unknown')
             }
     
     def _get_local_ip(self) -> str:
@@ -233,13 +237,18 @@ class AgentConfig:
             return '127.0.0.1'
     
     def _get_mac_address(self) -> str:
-        """Get MAC address"""
+        """Get MAC address - FIXED"""
         try:
             import uuid
             mac = uuid.getnode()
-            return ':'.join(['{:02x}'.format((mac >> elements) & 0xff) 
-                           for elements in range(0, 2*6, 2)][::-1])
-        except:
+            
+            # FIXED: Format MAC address properly
+            mac_hex = format(mac, '012x')
+            mac_formatted = ':'.join(mac_hex[i:i+2] for i in range(0, 12, 2))
+            
+            return mac_formatted
+        except Exception as e:
+            print(f"Error getting MAC address: {e}")
             return '00:00:00:00:00:00'
     
     # Property shortcuts for common configurations

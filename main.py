@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EDR Windows Agent - Main Entry Point
+EDR Windows Agent - Main Entry Point (FIXED)
 """
 
 import sys
@@ -11,13 +11,14 @@ import signal
 import time
 from pathlib import Path
 
-# Add current directory to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Add current directory to path to fix relative imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, current_dir)
 
+# Now import modules with absolute imports
 from config import AgentConfig
 from core.agent import EDRAgent
 from utils.windows_utils import is_admin, elevate_privileges
-from ui.tray_icon import SystemTrayIcon
 
 class EDRAgentMain:
     def __init__(self):
@@ -71,7 +72,7 @@ class EDRAgentMain:
     
     def create_directories(self):
         """Create necessary directories"""
-        directories = ["logs", "data", "data/cache", "data/temp"]
+        directories = ["logs", "data", "data/cache", "data/temp", "resources", "resources/icons"]
         
         for directory in directories:
             Path(directory).mkdir(parents=True, exist_ok=True)
@@ -125,7 +126,10 @@ class EDRAgentMain:
             return True
             
         except Exception as e:
-            logger.error(f"Failed to start agent: {e}")
+            if 'logger' in locals():
+                logger.error(f"Failed to start agent: {e}")
+            else:
+                print(f"Failed to start agent: {e}")
             return False
     
     def stop_agent(self):
