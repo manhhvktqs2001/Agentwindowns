@@ -12,7 +12,7 @@ server:
 # Agent Configuration
 agent:
   name: ${HOSTNAME}-edr-agent
-  version: 2.0.0
+  version: 2.0.0  # FIXED: Ensure version is always present
   log_level: INFO
   max_log_size: 100  # MB
   log_backup_count: 5

@@ -10,15 +10,21 @@ import logging
 import threading
 from datetime import datetime
 from typing import Dict, List, Any, Optional
+import socket
+import platform
+import uuid
+import psutil
+import requests
 
-from .connection import ServerConnection
-from .scheduler import TaskScheduler
-from ..monitors.process_monitor import ProcessMonitor
-from ..monitors.file_monitor import FileMonitor  
-from ..monitors.network_monitor import NetworkMonitor
-from ..actions.process_actions import ProcessActions
-from ..actions.notification_actions import NotificationActions
-from ..utils.log_sender import LogSender
+# Fixed imports - use absolute imports
+from core.connection import ServerConnection
+from core.scheduler import TaskScheduler
+from monitors.process_monitor import ProcessMonitor
+from monitors.file_monitor import FileMonitor  
+from monitors.network_monitor import NetworkMonitor
+from actions.process_actions import ProcessActions
+from actions.notification_actions import NotificationActions
+from utils.log_sender import LogSender
 
 class EDRAgent:
     """Main EDR Agent class"""
@@ -51,11 +57,11 @@ class EDRAgent:
         }
         self.buffer_lock = threading.Lock()
         
-        # FIXED: Add rules storage and management
+        # Add rules storage and management
         self.active_rules = []
         self.rules_lock = threading.Lock()
         
-        # FIXED: Add statistics tracking
+        # Add statistics tracking
         self.stats = {
             'start_time': None,
             'events_processed': 0,
@@ -99,7 +105,7 @@ class EDRAgent:
             self.process_actions = ProcessActions(self.config)
             self.notification_actions = NotificationActions(self.config)
             
-            # FIXED: Load initial rules
+            # Load initial rules
             self._load_initial_rules()
             
             self.logger.info("✅ All components initialized")
@@ -108,49 +114,49 @@ class EDRAgent:
             self.logger.error(f"❌ Failed to initialize components: {e}")
             raise
     
-    def start(self) -> threading.Thread:
+    def start(self):
         """Start the EDR agent"""
         try:
             self.logger.info("🚀 Starting EDR Agent...")
-            self.running = True
             self.stats['start_time'] = time.time()
+            self.running = True
             
-            # Start connection to server
-            self.connection.start()
+            # Initialize connection - FIXED: use start() instead of connect()
+            if not self.connection.start():
+                self.logger.warning("⚠️ Could not connect to server, starting in offline mode")
+                # Continue in offline mode
+                
+            # Register agent if connected
+            if self.connection.is_connected():
+                if not self.connection.register_agent():
+                    self.logger.warning("⚠️ Agent registration failed, continuing in offline mode")
             
-            # Register agent with server
-            self._register_agent()
-            
-            # Start log sender
+            # Start components
             self.log_sender.start()
             
             # Start monitors
-            self._start_monitors()
+            if self.process_monitor:
+                self.process_monitor.start()
+            if self.file_monitor:
+                self.file_monitor.start()
+            if self.network_monitor:
+                self.network_monitor.start()
             
-            # Start data sender
+            # Start background tasks
             self._start_data_sender()
-            
-            # Start heartbeat
             self._start_heartbeat()
-            
-            # FIXED: Start rule checking
             self._start_rule_checking()
-            
-            # Start main agent thread
-            agent_thread = threading.Thread(target=self._main_loop, daemon=True)
-            agent_thread.start()
             
             # Show startup notification
             if self.notification_actions:
                 self.notification_actions.show_startup_notification()
             
             self.logger.info("✅ EDR Agent started successfully")
-            return agent_thread
+            return True
             
         except Exception as e:
-            self.logger.error(f"❌ Failed to start agent: {e}")
-            self.stop()
-            raise
+            self.logger.error(f"Error starting agent: {e}")
+            return False
     
     def stop(self):
         """Stop the EDR agent"""
@@ -186,49 +192,6 @@ class EDRAgent:
             
         except Exception as e:
             self.logger.error(f"Error stopping agent: {e}")
-    
-    def _register_agent(self):
-        """Register agent with EDR server"""
-        try:
-            registration_data = {
-                'hostname': self.system_info.get('hostname'),
-                'os_type': self.system_info.get('os_type'),
-                'os_version': self.system_info.get('os_version'),
-                'architecture': self.system_info.get('architecture'),
-                'ip_address': self.system_info.get('ip_address'),
-                'mac_address': self.system_info.get('mac_address'),
-                'agent_version': self.config.get('agent', 'version'),
-                'status': 'Online'
-            }
-            
-            success = self.connection.register_agent(registration_data)
-            if success:
-                self.logger.info("✅ Agent registered successfully")
-                # FIXED: Get initial rules after registration
-                self._fetch_rules_from_server()
-            else:
-                self.logger.warning("⚠️ Agent registration failed")
-                
-        except Exception as e:
-            self.logger.error(f"Registration error: {e}")
-    
-    def _start_monitors(self):
-        """Start all monitoring components"""
-        try:
-            if self.process_monitor:
-                self.process_monitor.start()
-                self.logger.info("✅ Process monitor started")
-                
-            if self.file_monitor:
-                self.file_monitor.start()
-                self.logger.info("✅ File monitor started")
-                
-            if self.network_monitor:
-                self.network_monitor.start()
-                self.logger.info("✅ Network monitor started")
-                
-        except Exception as e:
-            self.logger.error(f"Error starting monitors: {e}")
     
     def _start_data_sender(self):
         """Start data sender task"""
@@ -280,32 +243,10 @@ class EDRAgent:
         rule_thread.start()
         self.logger.info("✅ Rule checking started")
     
-    def _main_loop(self):
-        """Main agent loop"""
-        while self.running:
-            try:
-                # Process any pending tasks
-                if self.scheduler:
-                    self.scheduler.process_tasks()
-                
-                # Check connection status
-                if not self.connection.is_connected():
-                    self.logger.warning("⚠️ Server connection lost, attempting reconnect...")
-                    self.connection.reconnect()
-                
-                # FIXED: Periodic health check
-                self._perform_health_check()
-                
-                time.sleep(1)
-                
-            except Exception as e:
-                self.logger.error(f"Error in main loop: {e}")
-                time.sleep(5)
-    
     def _on_process_event(self, event_data: Dict[str, Any]):
         """Handle process monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid process event data format")
                 return
@@ -316,13 +257,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'process')
             
             with self.buffer_lock:
                 self.data_buffer['processes'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['processes']) > max_buffer:
                     # Remove oldest entries
@@ -336,7 +277,7 @@ class EDRAgent:
     def _on_file_event(self, event_data: Dict[str, Any]):
         """Handle file monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid file event data format")
                 return
@@ -347,13 +288,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'file')
             
             with self.buffer_lock:
                 self.data_buffer['files'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['files']) > max_buffer:
                     # Remove oldest entries
@@ -367,7 +308,7 @@ class EDRAgent:
     def _on_network_event(self, event_data: Dict[str, Any]):
         """Handle network monitoring events"""
         try:
-            # FIXED: Add data validation
+            # Add data validation
             if not isinstance(event_data, dict):
                 self.logger.error("Invalid network event data format")
                 return
@@ -378,13 +319,13 @@ class EDRAgent:
             if 'hostname' not in event_data:
                 event_data['hostname'] = self.system_info.get('hostname')
             
-            # FIXED: Check against rules before storing
+            # Check against rules before storing
             self._check_event_against_rules(event_data, 'network')
             
             with self.buffer_lock:
                 self.data_buffer['networks'].append(event_data)
                 
-                # FIXED: Better buffer management
+                # Better buffer management
                 max_buffer = self.config.get('monitoring', 'batch_size', 50)
                 if len(self.data_buffer['networks']) > max_buffer:
                     # Remove oldest entries
@@ -442,9 +383,7 @@ class EDRAgent:
         try:
             process_name = event_data.get('process_name', '').lower()
             command_line = event_data.get('command_line', '').lower()
-            executable_path = event_data.get('executable_path', '').lower()
             
-            # Simple pattern matching - in production this would be more sophisticated
             rule_name = rule.get('rule_name', '').lower()
             
             if 'powershell' in rule_name and 'powershell' in process_name:
@@ -462,7 +401,6 @@ class EDRAgent:
     def _check_file_rule(self, rule: Dict[str, Any], event_data: Dict[str, Any]) -> bool:
         """Check file rule against event"""
         try:
-            file_name = event_data.get('file_name', '').lower()
             file_path = event_data.get('file_path', '').lower()
             
             rule_name = rule.get('rule_name', '').lower()
@@ -482,14 +420,11 @@ class EDRAgent:
     def _check_network_rule(self, rule: Dict[str, Any], event_data: Dict[str, Any]) -> bool:
         """Check network rule against event"""
         try:
-            remote_address = event_data.get('remote_address', '')
-            remote_port = event_data.get('remote_port', 0)
-            
             rule_name = rule.get('rule_name', '').lower()
             
             if 'suspicious' in rule_name and event_data.get('is_suspicious', False):
                 return True
-            elif 'c2' in rule_name and event_data.get('detection_reason', '').find('c2') >= 0:
+            elif 'c2' in rule_name and 'c2' in event_data.get('detection_reason', ''):
                 return True
             
             return False
@@ -512,7 +447,7 @@ class EDRAgent:
                 'event_data': event_data,
                 'timestamp': datetime.utcnow().isoformat(),
                 'hostname': self.system_info.get('hostname'),
-                'agent_id': self.connection.agent_id
+                'agent_id': getattr(self.connection, 'agent_id', None)
             }
             
             # Send alert to server
@@ -561,12 +496,11 @@ class EDRAgent:
                         
             elif 'file' in event_type:
                 # Quarantine file
-                file_path = event_data.get('file_path')
                 process_id = event_data.get('process_id')
-                if file_path and process_id and self.process_actions:
+                if process_id and self.process_actions:
                     success = self.process_actions.quarantine_process_executable(process_id)
                     if success:
-                        self.logger.info(f"🔒 Quarantined file {file_path} due to rule {rule.get('rule_name')}")
+                        self.logger.info(f"🔒 Quarantined file due to rule {rule.get('rule_name')}")
                         
         except Exception as e:
             self.logger.error(f"Error executing blocking action: {e}")
@@ -575,27 +509,30 @@ class EDRAgent:
         """Send buffered data to server"""
         try:
             with self.buffer_lock:
-                if not any(self.data_buffer.values()):
-                    return
-                
-                # Copy and clear buffers
-                data_to_send = {
-                    'processes': self.data_buffer['processes'].copy(),
-                    'files': self.data_buffer['files'].copy(),
-                    'networks': self.data_buffer['networks'].copy()
-                }
-                
+                process_logs = self.data_buffer['processes'].copy()
+                file_logs = self.data_buffer['files'].copy()
+                network_logs = self.data_buffer['networks'].copy()
                 self.data_buffer = {'processes': [], 'files': [], 'networks': []}
-            
-            # Send data via log sender
+
+            # Log debug nội dung log trước khi gửi
+            self.logger.debug(f"Gửi log process: {process_logs}")
+            self.logger.debug(f"Gửi log file: {file_logs}")
+            self.logger.debug(f"Gửi log network: {network_logs}")
+
+            # Gửi từng loại log với đúng event và format
             if self.log_sender:
-                success = self.log_sender.send_logs(data_to_send)
-                if success:
-                    total_events = sum(len(logs) for logs in data_to_send.values())
+                if process_logs:
+                    self.log_sender.send_logs({'logs': process_logs, 'type': 'process'}, priority=False)
+                if file_logs:
+                    self.log_sender.send_logs({'logs': file_logs, 'type': 'file'}, priority=False)
+                if network_logs:
+                    self.log_sender.send_logs({'logs': network_logs, 'type': 'network'}, priority=False)
+
+                total_events = len(process_logs) + len(file_logs) + len(network_logs)
+                if total_events > 0:
                     self.logger.debug(f"✅ Sent {total_events} events to server")
                 else:
-                    self.logger.warning("⚠️ Failed to send data to server")
-                    
+                    self.logger.debug("No events to send")
         except Exception as e:
             self.logger.error(f"Error sending buffered data: {e}")
     
@@ -625,45 +562,8 @@ class EDRAgent:
         except Exception as e:
             self.logger.error(f"Error fetching rules from server: {e}")
     
-    def _perform_health_check(self):
-        """Perform periodic health check"""
-        try:
-            # Check monitor health
-            monitors_healthy = True
-            
-            if self.process_monitor and not self.process_monitor.is_running():
-                self.logger.warning("⚠️ Process monitor is not running, restarting...")
-                self.process_monitor.start()
-                monitors_healthy = False
-            
-            if self.file_monitor and not self.file_monitor.is_running():
-                self.logger.warning("⚠️ File monitor is not running, restarting...")
-                self.file_monitor.start()
-                monitors_healthy = False
-            
-            if self.network_monitor and not self.network_monitor.is_running():
-                self.logger.warning("⚠️ Network monitor is not running, restarting...")
-                self.network_monitor.start()
-                monitors_healthy = False
-            
-            # Check connection health
-            if not self.connection.is_connected():
-                monitors_healthy = False
-            
-            # Log health status periodically
-            current_time = time.time()
-            if hasattr(self, '_last_health_log'):
-                if current_time - self._last_health_log > 300:  # Every 5 minutes
-                    self.logger.info(f"💓 Health check: {'Healthy' if monitors_healthy else 'Issues detected'}")
-                    self._last_health_log = current_time
-            else:
-                self._last_health_log = current_time
-                
-        except Exception as e:
-            self.logger.error(f"Error in health check: {e}")
-    
     def handle_server_command(self, command_data: Dict[str, Any]):
-        """Handle commands from EDR server"""
+        """Handle commands from EDR server via HTTP"""
         try:
             command_type = command_data.get('type')
             command_params = command_data.get('params', {})
@@ -683,7 +583,7 @@ class EDRAgent:
             elif command_type == 'update_rules':
                 self._handle_update_rules_command(command_params)
             elif command_type == 'get_status':
-                self._handle_get_status_command(command_params)
+                return self.get_status()
             else:
                 self.logger.warning(f"⚠️ Unknown command type: {command_type}")
                 
@@ -730,7 +630,6 @@ class EDRAgent:
         """Handle block network command"""
         try:
             ip_address = params.get('ip_address')
-            port = params.get('port')
             process_id = params.get('process_id')
             
             if ip_address and self.network_monitor:
@@ -749,13 +648,12 @@ class EDRAgent:
     def _handle_quarantine_file_command(self, params: Dict[str, Any]):
         """Handle quarantine file command"""
         try:
-            file_path = params.get('file_path')
             process_id = params.get('process_id')
             
             if process_id and self.process_actions:
                 success = self.process_actions.quarantine_process_executable(process_id)
                 if success:
-                    self.logger.info(f"🔒 File quarantined by server command: {file_path}")
+                    self.logger.info(f"🔒 File quarantined by server command")
             
         except Exception as e:
             self.logger.error(f"Error quarantining file: {e}")
@@ -792,33 +690,6 @@ class EDRAgent:
         except Exception as e:
             self.logger.error(f"Error updating rules: {e}")
     
-    def _handle_get_status_command(self, params: Dict[str, Any]):
-        """Handle get status command"""
-        try:
-            status = self.get_status()
-            
-            # Send status back to server
-            if self.connection:
-                self.connection.send_logs({
-                    'type': 'status_response',
-                    'status': status
-                })
-            
-            self.logger.info("📊 Status sent to server")
-            
-        except Exception as e:
-            self.logger.error(f"Error handling get status: {e}")
-    
-    def update_rules(self, rules: List[Dict[str, Any]]):
-        """Update active rules"""
-        try:
-            with self.rules_lock:
-                self.active_rules = rules
-            self.logger.info(f"📋 Updated {len(rules)} rules")
-            
-        except Exception as e:
-            self.logger.error(f"Error updating rules: {e}")
-    
     def get_status(self) -> Dict[str, Any]:
         """Get agent status information"""
         try:
@@ -827,7 +698,7 @@ class EDRAgent:
             return {
                 'running': self.running,
                 'connected': self.connection.is_connected() if self.connection else False,
-                'agent_id': self.connection.agent_id if self.connection else None,
+                'agent_id': getattr(self.connection, 'agent_id', None),
                 'hostname': self.system_info.get('hostname'),
                 'agent_version': self.config.get('agent', 'version'),
                 'uptime': uptime,
@@ -856,7 +727,6 @@ class EDRAgent:
     def _get_cpu_usage(self) -> float:
         """Get current CPU usage"""
         try:
-            import psutil
             return psutil.cpu_percent(interval=1)
         except Exception:
             return 0.0
@@ -864,7 +734,6 @@ class EDRAgent:
     def _get_memory_usage(self) -> float:
         """Get current memory usage percentage"""
         try:
-            import psutil
             return psutil.virtual_memory().percent
         except Exception:
             return 0.0
@@ -872,7 +741,16 @@ class EDRAgent:
     def _get_disk_usage(self) -> float:
         """Get current disk usage percentage"""
         try:
-            import psutil
             return psutil.disk_usage('C:').percent
         except Exception:
             return 0.0
+    
+    def update_rules(self, rules: List[Dict[str, Any]]):
+        """Update active rules"""
+        try:
+            with self.rules_lock:
+                self.active_rules = rules
+            self.logger.info(f"📋 Updated {len(rules)} rules")
+            
+        except Exception as e:
+            self.logger.error(f"Error updating rules: {e}")

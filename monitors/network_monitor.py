@@ -58,22 +58,19 @@ class NetworkMonitor:
         """Start network monitoring"""
         try:
             if self.running:
-                return
-                
+                self.logger.warning("NetworkMonitor.start() called but already running.")
+                return False
             self.running = True
-            
             # Initialize known connections
             self._initialize_connections()
-            
             # Start monitoring thread
             self.monitor_thread = threading.Thread(target=self._monitor_loop, daemon=True)
             self.monitor_thread.start()
-            
             self.logger.info("🔍 Network monitoring started")
-            
+            return True
         except Exception as e:
             self.logger.error(f"Failed to start network monitor: {e}")
-            raise
+            return False
     
     def stop(self):
         """Stop network monitoring"""

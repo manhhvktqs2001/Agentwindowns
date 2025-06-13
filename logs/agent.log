@@ -1,0 +1,1135 @@
+2025-06-07 16:17:34,044 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:17:34,049 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:17:34,274 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:17:34,570 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:17:34,570 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:17:34,574 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:17:34,575 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:17:34,575 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:17:34,575 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:17:34,575 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:17:34,580 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:17:36,262 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:17:36,262 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:17:36,272 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:17:36,367 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:17:36,369 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:17:36,370 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:17:36,371 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:17:36,372 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:17:36,372 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:17:36,372 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:17:36,372 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:17:36,551 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:17:36,552 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:17:36,552 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:17:36,553 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:17:36,553 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:17:36,555 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:17:36,557 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:17:36,557 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:17:36,557 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:17:36,557 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:17:36,626 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:17:36,673 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:17:36,762 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:17:36,764 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:17:36,798 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:17:36,817 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:17:36,825 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:17:36,844 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:17:37,052 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:17:37,061 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:17:37,078 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:17:37,089 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:17:37,115 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:17:37,146 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:17:37,154 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:17:37,179 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:17:37,221 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:17:37,233 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:17:37,240 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:17:37,253 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:17:37,253 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:17:37,268 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:17:37,292 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:17:37,297 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:17:37,315 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:17:37,327 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:17:37,327 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:17:37,337 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:17:37,338 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:17:37,395 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:17:37,395 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:17:37,455 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:17:37,461 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:17:37,463 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:17:37,465 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:17:37,475 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:17:37,477 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:17:37,501 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:17:37,524 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:17:37,535 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:17:37,547 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:17:37,550 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:17:37,572 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:17:37,678 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:17:37,697 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:17:37,739 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:17:37,743 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:17:37,744 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:17:37,753 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:17:37,754 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:17:37,755 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:17:37,785 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:17:37,873 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:17:37,875 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:17:37,877 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:17:37,877 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:17:37,877 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:17:37,880 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:17:37,894 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:17:37,910 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:17:37,912 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:17:37,916 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:17:37,917 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:17:37,918 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:17:38,129 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:17:38,132 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:17:38,670 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:17:38,672 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:17:38,755 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:17:38,755 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:17:38,755 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:17:38,802 - ui.tray_icon - ERROR - Error stopping system tray: cannot join thread before it is started
+2025-06-07 16:17:38,981 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:17:39,288 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:17:39,291 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:17:39,359 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:17:39,412 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:17:39,469 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:17:39,605 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:17:39,632 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:17:42,484 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:17:42,520 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:17:42,522 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:17:42,547 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:17:42,562 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:17:43,134 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:17:43,166 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:17:43,168 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:17:43,451 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:17:43,457 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:17:44,075 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:17:44,087 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:17:44,660 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:17:44,668 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:17:47,407 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:17:47,936 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:17:57,426 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:17:57,426 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:17:57,426 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:17:57,426 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:17:57,676 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:17:57,676 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:17:57,678 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:17:57,952 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:17:57,957 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:17:57,959 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:17:57,961 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:17:58,222 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:17:58,223 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:17:58,224 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:20:31,368 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:20:31,374 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:20:31,384 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:20:32,145 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:20:32,145 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:20:32,145 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:20:32,149 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:20:32,149 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:20:32,149 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:20:32,149 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:20:32,152 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:20:32,182 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:20:32,182 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:20:32,183 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:20:32,183 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:20:32,183 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:20:32,232 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:20:32,308 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:20:32,358 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:20:32,367 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:20:32,803 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:20:32,825 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:20:32,828 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:20:32,955 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:20:33,007 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:20:33,008 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:20:33,143 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:20:33,277 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:20:33,282 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:20:33,351 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:20:33,554 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:20:33,556 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:20:33,556 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:20:33,558 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:20:33,646 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:20:33,708 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:20:33,803 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:20:33,880 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:20:33,882 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:20:33,884 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:20:33,887 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:20:33,989 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:20:33,989 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:20:33,997 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:20:34,000 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:20:34,018 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:20:34,113 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:20:34,176 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:20:34,188 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:20:34,197 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:20:34,246 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:20:34,249 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:20:34,283 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:20:34,286 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:20:34,287 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:20:34,288 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:20:34,288 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:20:34,288 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:20:34,288 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:20:34,289 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:20:34,290 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:20:34,290 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:20:34,290 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:20:34,290 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:20:34,290 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:20:34,314 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:20:34,408 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:20:34,422 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:20:34,455 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:20:34,512 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:20:34,528 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:20:34,551 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:20:34,608 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:20:34,618 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:20:34,636 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:20:34,657 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:20:34,672 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:20:34,681 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:20:34,685 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:20:34,723 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:20:34,735 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:20:34,735 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:20:34,740 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:20:34,746 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:20:34,770 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:20:34,860 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:20:34,874 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:20:34,914 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:20:35,012 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:20:35,104 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:20:35,176 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:20:35,228 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:20:35,228 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:20:35,271 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:20:35,273 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:20:35,352 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:20:35,369 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:20:35,478 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:20:35,517 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:20:35,538 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:20:35,554 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:20:35,948 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:20:35,955 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:20:36,083 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:20:36,083 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:20:36,085 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:20:36,086 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:20:36,087 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:20:36,098 - ui.tray_icon - ERROR - Error stopping system tray: cannot join thread before it is started
+2025-06-07 16:20:36,105 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:20:39,299 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:20:39,327 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:20:40,255 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:20:40,255 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:20:40,537 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:20:40,546 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:20:40,972 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:20:40,997 - core.connection - WARNING - ⚠️ HTTP test failed: 404
+2025-06-07 16:20:41,000 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:20:41,024 - monitors.process_monitor - INFO - 📊 Initialized with 130 existing processes
+2025-06-07 16:20:41,035 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:20:41,125 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:20:41,133 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:20:44,052 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:20:45,356 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:20:54,065 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:20:54,065 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:20:54,067 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:20:54,067 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:20:54,483 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:20:54,483 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:20:54,485 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:20:56,541 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:20:56,541 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:20:56,542 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:20:56,542 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:20:56,958 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:20:56,958 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:20:56,958 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:38:19,622 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:38:19,625 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:38:19,639 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:38:19,928 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:38:19,930 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:38:19,930 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:38:19,931 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:38:19,931 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:38:19,931 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:38:19,932 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:38:19,933 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:38:19,942 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:38:19,942 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:38:19,942 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:38:19,942 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:38:19,946 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:38:20,037 - core.connection - ERROR - ❌ Failed to connect to server: Client.connect() got an unexpected keyword argument 'timeout'
+2025-06-07 16:38:20,081 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:38:20,087 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:38:20,198 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:38:20,439 - monitors.process_monitor - INFO - 📊 Initialized with 129 existing processes
+2025-06-07 16:38:20,460 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:38:20,464 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:38:20,467 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:38:20,470 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:38:20,619 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:38:20,810 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:38:20,836 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:38:21,014 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:38:21,150 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:38:21,218 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:38:21,276 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:38:21,321 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:38:21,410 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:38:21,410 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:38:21,419 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:38:21,419 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:38:21,443 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:38:21,545 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:38:21,550 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:38:21,558 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:38:21,560 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:38:21,604 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:38:21,647 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:38:21,703 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:38:21,825 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:38:21,893 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:38:21,899 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:38:22,034 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:38:22,039 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:38:22,040 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:38:22,040 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:38:22,041 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:38:22,041 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:38:22,041 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:38:22,041 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:38:22,041 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:38:22,056 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:38:22,085 - core.connection - ERROR - ❌ Failed to connect to server: Client.connect() got an unexpected keyword argument 'timeout'
+2025-06-07 16:38:22,207 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:38:22,236 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:38:22,236 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:38:22,257 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:38:22,310 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:38:22,329 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:38:22,367 - monitors.process_monitor - INFO - 📊 Initialized with 129 existing processes
+2025-06-07 16:38:22,421 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:38:22,444 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:38:22,457 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:38:22,484 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:38:22,547 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:38:22,553 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:38:22,555 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:38:22,565 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:38:22,569 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:38:22,628 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:38:22,634 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:38:22,639 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:38:22,643 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:38:22,647 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:38:22,654 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:38:22,661 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:38:22,859 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:38:22,873 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:38:22,876 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:38:22,968 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:38:22,978 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:38:22,981 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:38:22,994 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:38:23,015 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:38:23,080 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:38:23,085 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:38:23,088 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:38:23,088 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:38:23,093 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:38:23,094 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:38:23,097 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:38:23,097 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:38:23,163 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:38:23,237 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:38:23,263 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:38:23,269 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:38:23,279 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:38:23,425 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:38:23,435 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:38:23,491 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:38:23,501 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:38:23,502 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:38:23,598 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:38:23,614 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:38:23,643 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:38:23,648 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:38:27,862 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:38:27,923 - core.connection - ERROR - ❌ Failed to connect to server: Client.connect() got an unexpected keyword argument 'timeout'
+2025-06-07 16:38:27,924 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:38:29,537 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:38:29,541 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:38:29,711 - core.connection - ERROR - ❌ Failed to connect to server: Client.connect() got an unexpected keyword argument 'timeout'
+2025-06-07 16:38:29,711 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:38:29,755 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:38:29,907 - monitors.process_monitor - INFO - 📊 Initialized with 129 existing processes
+2025-06-07 16:38:29,957 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:38:29,968 - core.agent - WARNING - ⚠️ File monitor is not running, restarting...
+2025-06-07 16:38:30,004 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:38:30,040 - monitors.process_monitor - INFO - 📊 Initialized with 129 existing processes
+2025-06-07 16:38:30,108 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:38:30,121 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:38:30,145 - core.agent - WARNING - ⚠️ File monitor is not running, restarting...
+2025-06-07 16:38:30,160 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:38:30,162 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:38:30,224 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:38:30,231 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:38:30,275 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:38:30,276 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:38:30,282 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:38:30,288 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:38:30,295 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:38:30,302 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:38:30,310 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:38:30,323 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:38:30,328 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:38:30,332 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:38:30,346 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:38:30,346 - monitors.file_monitor - INFO - 🔍 File monitoring started for 12 paths
+2025-06-07 16:38:30,348 - core.agent - WARNING - ⚠️ Network monitor is not running, restarting...
+2025-06-07 16:38:30,353 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:38:30,360 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:38:30,443 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:38:30,567 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:38:30,803 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:38:30,937 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:38:31,061 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:38:31,158 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:38:31,268 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:38:31,330 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:38:31,455 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:38:31,570 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:38:31,662 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:38:31,683 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:38:31,693 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:38:31,770 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:38:31,811 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:38:31,813 - monitors.file_monitor - INFO - 🔍 File monitoring started for 7 paths
+2025-06-07 16:38:31,903 - core.agent - WARNING - ⚠️ Network monitor is not running, restarting...
+2025-06-07 16:38:31,960 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:38:32,041 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:38:35,178 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:38:36,406 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:38:45,191 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:38:45,191 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:38:45,191 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:38:45,191 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:38:45,591 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:38:45,591 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:38:45,591 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:38:46,427 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:38:46,428 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:38:46,428 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:38:46,430 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:38:46,476 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:38:46,482 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:38:46,482 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:42:59,989 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:42:59,992 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:43:00,242 - __main__ - INFO - Server URL: http://192.168.215.24:5000
+2025-06-07 16:43:00,643 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:43:00,643 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:43:00,644 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:43:00,644 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:43:00,644 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:43:00,644 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:43:00,684 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:43:00,689 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:43:00,704 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:43:00,705 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:43:00,707 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:43:00,707 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:43:00,708 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.215.24:5000
+2025-06-07 16:43:00,750 - core.connection - ERROR - ❌ HTTP connectivity test failed: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021FFB06B230>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:00,863 - core.connection - ERROR - Registration error: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/agents/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021FFB06BB60>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:00,874 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:43:00,924 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:43:01,179 - monitors.process_monitor - INFO - 📊 Initialized with 127 existing processes
+2025-06-07 16:43:01,192 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:43:01,199 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:43:01,494 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:43:01,501 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\smss.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,506 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\dwm.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,544 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\svchost.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,694 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\csrss.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,699 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:43:01,720 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wininit.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,790 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\winlogon.exe - Reasons: system_file_tampering
+2025-06-07 16:43:01,890 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\services.exe - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:01,912 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\lsass.exe - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:01,995 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:43:02,018 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\fontdrvhost.exe - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,111 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\SecurityHealthSystray.exe - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,112 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:43:02,112 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:43:02,165 - __main__ - INFO - Server URL: http://192.168.215.24:5000
+2025-06-07 16:43:02,165 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:43:02,357 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:43:02,371 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:43:02,375 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:43:02,470 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\spoolsv.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,496 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:43:02,593 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\SecurityHealthService.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,606 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:43:02,625 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\vm3dservice.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,782 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:43:02,793 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:43:02,793 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:43:02,793 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:43:02,795 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:43:02,795 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:43:02,795 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:43:02,795 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:43:02,796 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:43:02,797 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe - Reasons: system_file_tampering
+2025-06-07 16:43:02,798 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:43:02,798 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:43:02,798 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:43:02,798 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:43:02,798 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.215.24:5000
+2025-06-07 16:43:02,802 - core.connection - ERROR - ❌ HTTP connectivity test failed: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002DEE2673200>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:02,804 - core.connection - ERROR - Registration error: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/agents/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002DEE2673C50>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:02,805 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:43:02,931 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:43:02,935 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\dllhost.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:02,935 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:43:03,067 - monitors.process_monitor - INFO - 📊 Initialized with 127 existing processes
+2025-06-07 16:43:03,078 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\SearchIndexer.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:03,092 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:43:03,102 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:43:03,109 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wbem\WmiPrvSE.exe - Reasons: system_file_tampering
+2025-06-07 16:43:03,115 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:43:03,116 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\msdtc.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:03,198 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\AggregatorHost.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:03,277 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:43:03,277 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:43:03,361 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:43:03,372 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:43:03,443 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:43:03,456 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:43:03,468 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:43:03,468 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:43:03,470 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:43:03,475 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:43:03,483 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:43:03,485 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:43:03,487 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:43:03,624 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:43:03,657 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:43:03,657 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:43:03,660 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:43:03,663 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:43:03,726 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:43:03,727 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:43:03,729 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:43:03,730 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:43:03,731 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:43:03,790 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:43:03,816 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:43:03,821 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:43:03,824 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:43:03,825 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:43:03,829 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:43:03,928 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:43:03,938 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:43:03,941 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:43:03,943 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:43:03,992 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:43:03,994 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:43:03,995 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:43:04,080 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:43:04,121 - core.agent - WARNING - ⚠️ Server connection lost, attempting reconnect...
+2025-06-07 16:43:04,121 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\sihost.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:04,137 - core.connection - INFO - 🔄 Attempting to reconnect...
+2025-06-07 16:43:04,142 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:43:04,142 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\taskhostw.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:04,152 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\sihost.exe - Reasons: system_file_tampering
+2025-06-07 16:43:04,155 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\taskhostw.exe - Reasons: system_file_tampering
+2025-06-07 16:43:04,162 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:43:04,180 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\ctfmon.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:04,228 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\ctfmon.exe - Reasons: system_file_tampering
+2025-06-07 16:43:04,280 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:43:04,373 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\RuntimeBroker.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:04,379 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\RuntimeBroker.exe - Reasons: system_file_tampering
+2025-06-07 16:43:04,469 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:43:04,470 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:43:04,478 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:43:04,551 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:43:04,613 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:43:04,744 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:43:04,748 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:43:04,797 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:43:05,054 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:43:05,063 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:43:05,204 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:43:05,246 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:43:05,278 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\vaultcli.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,291 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\vaultcli.dll - Reasons: system_file_tampering
+2025-06-07 16:43:05,471 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\AppContracts.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,473 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\AppContracts.dll - Reasons: system_file_tampering
+2025-06-07 16:43:05,761 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\backgroundTaskHost.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,761 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\backgroundTaskHost.exe - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,904 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\biwinrt.dll - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,904 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\biwinrt.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,917 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.Storage.Search.dll - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,918 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.Storage.Search.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,925 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.Security.Authentication.Web.Core.dll - Reasons: rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,926 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.Security.Authentication.Web.Core.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,984 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\UserMgrProxy.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:05,984 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\UserMgrProxy.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,104 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\usermgrcli.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,104 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\usermgrcli.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,119 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wpncore.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,120 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wpncore.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,132 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Microsoft-Windows-AppModelExecEvents.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:06,180 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Microsoft-Windows-AppModelExecEvents.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,402 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.215.24:5000
+2025-06-07 16:43:09,412 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\smartscreen.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,416 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.215.24:5000
+2025-06-07 16:43:09,431 - core.connection - ERROR - ❌ HTTP connectivity test failed: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002DEE26D3EC0>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:09,436 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\KBDUS.DLL - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,503 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:43:09,618 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.System.Profile.PlatformDiagnosticsAndUsageDataSettings.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,678 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\smartscreen.exe - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,693 - monitors.process_monitor - INFO - 📊 Initialized with 126 existing processes
+2025-06-07 16:43:09,702 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\policymanager.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,709 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\msvcp110_win.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,753 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wkscli.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,803 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\KBDUS.DLL - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,805 - core.connection - ERROR - ❌ HTTP connectivity test failed: HTTPConnectionPool(host='192.168.215.24', port=5000): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021FFC3A9550>: Failed to establish a new connection: [WinError 10051] A socket operation was attempted to an unreachable network'))
+2025-06-07 16:43:09,809 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\dsreg.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,890 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.System.Profile.PlatformDiagnosticsAndUsageDataSettings.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:09,966 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:43:09,977 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:43:09,980 - core.agent - WARNING - ⚠️ Process monitor is not running, restarting...
+2025-06-07 16:43:09,986 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\policymanager.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:10,163 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\smartscreenps.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:11,000 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:43:11,152 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\dpapi.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:11,649 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Program Files (x86)\Microsoft\Edge\Application\136.0.3240.50\d3dcompiler_47.dll - Reasons: rapid_file_modifications
+2025-06-07 16:43:11,913 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:43:11,933 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:43:12,117 - monitors.process_monitor - INFO - 📊 Initialized with 126 existing processes
+2025-06-07 16:43:12,175 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:43:12,193 - core.agent - WARNING - ⚠️ File monitor is not running, restarting...
+2025-06-07 16:43:12,361 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:43:12,391 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:43:12,508 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:43:12,613 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:43:12,676 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:43:12,742 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:43:12,761 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:43:12,832 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:43:12,955 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:43:13,027 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:43:13,119 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:13,120 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:43:13,240 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:43:13,248 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Program Files (x86)\Microsoft\Edge\Application\136.0.3240.50\ffmpeg.dll - Reasons: rapid_file_modifications
+2025-06-07 16:43:13,389 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:43:13,414 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:43:13,417 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wpnapps.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:13,487 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\xmllite.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:13,504 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:43:13,540 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:43:13,708 - core.agent - WARNING - ⚠️ Network monitor is not running, restarting...
+2025-06-07 16:43:13,727 - monitors.network_monitor - INFO - 📊 Initialized with 18 existing connections
+2025-06-07 16:43:13,899 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\diagtrack.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:13,920 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:43:14,413 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:43:14,416 - utils.log_sender - INFO - 💾 Saved 1 logs to cache
+2025-06-07 16:43:15,028 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\atl.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:15,033 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\mscoree.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:15,051 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\vcruntime140_1_clr0400.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:15,061 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\vcruntime140_clr0400.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:15,122 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\ucrtbase_clr0400.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:17,179 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:43:17,509 - utils.log_sender - INFO - 💾 Saved 1 logs to cache
+2025-06-07 16:43:17,691 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\winnlsres.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:18,269 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\OpcServices.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:19,074 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\WindowsPowerShell\v1.0\PSEvents.dll - Reasons: system_file_tampering
+2025-06-07 16:43:19,627 - monitors.process_monitor - WARNING - 🚨 Suspicious process created: RuntimeBroker.exe (PID: 8600) - unsigned_system_binary
+2025-06-07 16:43:20,708 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.ApplicationModel.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:21,300 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wlanapi.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:21,390 - monitors.process_monitor - WARNING - 🚨 Suspicious process created: powershell.exe (PID: 8480) - suspicious_process_name
+2025-06-07 16:43:21,401 - monitors.process_monitor - WARNING - 🚨 Suspicious process created: powershell.exe (PID: 8480) - suspicious_process_name
+2025-06-07 16:43:21,509 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wshext.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:21,861 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\PCPKsp.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:21,868 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\ncryptprov.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:22,353 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\WindowsCodecsRaw.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:22,412 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\dlnashext.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:22,520 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\inetcomm.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:22,620 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\webcheck.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:22,949 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\ntshrui.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,057 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\shell32.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,137 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\WorkFoldersShell.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,279 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\stobject.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,298 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\EhStorShell.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,476 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\cryptext.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,482 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\colorui.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,629 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\TileDataRepository.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,637 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\StateRepository.Core.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,862 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\Windows.Internal.Shell.Broker.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,919 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\wininet.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:23,952 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\PCShellCommonProxyStub.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:24,138 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\StartTileData.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:24,469 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:43:24,471 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:43:24,475 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:43:24,475 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:43:24,727 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:43:24,727 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:43:24,728 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:43:25,025 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Program Files (x86)\Microsoft\Edge\Application\136.0.3240.50\identity_helper.exe - Reasons: rapid_file_modifications
+2025-06-07 16:43:25,676 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\gpsvc.dll - Reasons: mass_file_operation, rapid_file_modifications, system_file_tampering
+2025-06-07 16:43:27,532 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:43:27,533 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:43:27,534 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:43:27,534 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:43:27,811 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:43:27,812 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:43:27,812 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:44:21,974 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:44:21,978 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:44:21,998 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:44:22,429 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:44:22,429 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:44:22,429 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:44:22,539 - utils.log_sender - INFO - 📂 Loaded 2 cached logs
+2025-06-07 16:44:22,539 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:44:22,541 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:44:22,541 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:44:22,541 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:44:22,542 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:44:22,546 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:44:22,547 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:44:22,547 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:44:22,547 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:44:22,547 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:44:22,811 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:44:22,874 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:44:22,876 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:44:22,961 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:44:23,224 - monitors.process_monitor - INFO - 📊 Initialized with 128 existing processes
+2025-06-07 16:44:23,239 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:44:23,292 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:44:23,401 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:44:23,439 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:44:23,562 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:44:23,571 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:44:23,574 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:44:23,586 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:44:23,600 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:44:23,710 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:44:23,729 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:44:23,729 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:44:23,729 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:44:23,729 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:44:23,730 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:44:23,730 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:44:23,730 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:44:23,730 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:44:23,735 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:44:23,736 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:44:23,736 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:44:23,736 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:44:23,736 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:44:23,749 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:44:23,826 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:44:23,911 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:44:23,912 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:44:23,916 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:44:23,959 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:44:23,961 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:44:24,063 - core.connection - ERROR - ❌ Registration failed: 404 - {"code":404,"error":"Endpoint not found"}
+
+2025-06-07 16:44:24,110 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:44:24,121 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:44:24,125 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:44:24,194 - monitors.process_monitor - INFO - 📊 Initialized with 128 existing processes
+2025-06-07 16:44:24,203 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:44:24,217 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:44:24,285 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:44:24,301 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:44:24,324 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:44:24,324 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:44:24,326 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:44:24,330 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:44:24,431 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:44:24,458 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:44:24,526 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:44:24,558 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:44:24,564 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:44:24,567 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:44:24,569 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:44:24,573 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:44:24,584 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:44:24,651 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:44:24,657 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:44:24,659 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:44:24,663 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:44:24,665 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:44:24,672 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:44:24,674 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:44:24,676 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:44:24,677 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:44:24,677 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:44:24,679 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:44:24,681 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:44:24,682 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:44:24,689 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:44:24,693 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:44:24,693 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:44:24,696 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:44:24,705 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:44:24,706 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:44:24,825 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:44:24,961 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:44:24,962 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\IconCodecService.dll - Reasons: system_file_tampering
+2025-06-07 16:44:24,962 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\IconCodecService.dll - Reasons: system_file_tampering
+2025-06-07 16:44:25,150 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:44:25,192 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:44:25,207 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:44:25,217 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:44:25,222 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:44:25,258 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:44:25,266 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:44:25,268 - ui.tray_icon - ERROR - Error stopping system tray: cannot join thread before it is started
+2025-06-07 16:44:25,313 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:44:25,329 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:44:25,351 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:44:25,405 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:44:25,684 - ui.tray_icon - INFO - 🛑 System tray icon stopped
+2025-06-07 16:44:25,725 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:44:30,341 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:44:30,377 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:44:30,824 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:44:30,831 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:44:34,732 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:44:34,732 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:44:44,753 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:44:44,753 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:44:44,758 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:44:44,768 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:44:44,779 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:44:44,808 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:44:44,852 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:44:44,853 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:44:44,854 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:44:44,854 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:44:44,996 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:44:44,996 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:44:44,997 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:44:44,998 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:44:44,998 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:44:44,999 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:45:43,005 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:45:43,006 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:45:43,015 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:45:43,259 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:45:43,261 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:45:43,261 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:45:43,261 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:45:43,261 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:45:43,261 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:45:43,264 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:45:43,267 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:45:43,299 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:45:43,300 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:45:43,354 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:45:43,362 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:45:43,369 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:45:43,770 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:45:43,884 - core.connection - ERROR - ❌ Registration failed: 400 - {"code":500,"message":"Missing required field: version","status":"error","timestamp":"2025-06-07T16:45:42.626697"}
+
+2025-06-07 16:45:43,903 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:45:43,910 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:45:44,132 - monitors.process_monitor - INFO - 📊 Initialized with 128 existing processes
+2025-06-07 16:45:44,144 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:45:44,207 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:45:44,416 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:45:44,534 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:45:44,674 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:45:44,697 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:45:44,802 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:45:44,805 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:45:44,806 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:45:44,813 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:45:44,947 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:45:45,024 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:45:45,037 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:45:45,040 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:45:45,044 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:45:45,081 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:45:45,082 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:45:45,083 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:45:45,084 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:45:45,084 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:45:45,128 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:45:45,136 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:45:45,137 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:45:45,139 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:45:45,140 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:45:45,141 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:45:45,141 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:45:45,141 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:45:45,325 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:45:45,413 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:45:45,442 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:45:45,490 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:45:45,558 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:45:45,568 - core.connection - ERROR - ❌ Registration failed: 400 - {"code":500,"message":"Missing required field: version","status":"error","timestamp":"2025-06-07T16:45:44.311503"}
+
+2025-06-07 16:45:45,569 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:45:45,577 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:45:45,587 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:45:45,638 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:45:45,694 - monitors.process_monitor - INFO - 📊 Initialized with 128 existing processes
+2025-06-07 16:45:45,698 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:45:45,702 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:45:45,771 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:45:45,808 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:45:45,834 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:45:45,861 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:45:45,862 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:45:45,870 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:45:45,878 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:45:45,882 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:45:45,929 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:45:45,932 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:45:45,944 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:45:45,949 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:45:45,949 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:45:45,995 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:45:46,048 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:45:46,052 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:45:46,088 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:45:46,096 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:45:46,101 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:45:46,146 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:45:46,194 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:45:46,201 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:45:46,219 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:45:46,238 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:45:46,256 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:45:46,261 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:45:46,276 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:45:46,287 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:45:46,287 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:45:46,287 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:45:46,427 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:45:46,444 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:45:46,461 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:45:46,463 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:45:46,469 - ui.tray_icon - ERROR - Error stopping system tray: cannot join thread before it is started
+2025-06-07 16:45:46,472 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:45:46,546 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:45:46,646 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:45:46,674 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:45:46,742 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:45:46,754 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:45:46,769 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\oobe\UserOOBEBroker.exe - Reasons: system_file_tampering
+2025-06-07 16:45:46,769 - monitors.file_monitor - WARNING - 🚨 Suspicious file activity: modified - C:\Windows\System32\oobe\UserOOBEBroker.exe - Reasons: system_file_tampering
+2025-06-07 16:45:46,815 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:45:46,829 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:45:46,830 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:45:46,831 - ui.tray_icon - ERROR - Error stopping system tray: cannot join thread before it is started
+2025-06-07 16:45:46,832 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:45:51,478 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:45:51,485 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:45:51,973 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:45:52,064 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:45:55,878 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:45:56,294 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:46:05,886 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:46:05,890 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:46:05,896 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:46:05,898 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:46:05,898 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:46:06,121 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:46:06,121 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:46:06,121 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:46:06,310 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:46:06,346 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:46:06,353 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:46:06,353 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:46:06,353 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:46:06,483 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:46:06,483 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:46:06,485 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:48:33,579 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:48:33,585 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:48:33,606 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:48:34,077 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:48:34,078 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:48:34,078 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:48:34,078 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:48:34,078 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:48:34,078 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:48:34,078 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:48:34,081 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:48:34,160 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:48:34,161 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:48:34,161 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:48:34,161 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:48:34,161 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:48:34,393 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:48:34,438 - core.connection - ERROR - ❌ Registration failed: 400 - {"code":500,"message":"Missing required field: version","status":"error","timestamp":"2025-06-07T16:48:33.177772"}
+
+2025-06-07 16:48:34,462 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:48:34,464 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:48:34,742 - monitors.process_monitor - INFO - 📊 Initialized with 127 existing processes
+2025-06-07 16:48:34,747 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:48:34,762 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:48:34,907 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:48:34,927 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:48:34,936 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:48:34,992 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:48:35,125 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:48:35,210 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:48:35,221 - __main__ - INFO - EDR Agent logging initialized
+2025-06-07 16:48:35,221 - __main__ - INFO - 🚀 Starting EDR Windows Agent...
+2025-06-07 16:48:35,228 - __main__ - INFO - Server URL: http://192.168.20.85:5000
+2025-06-07 16:48:35,306 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:48:35,332 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:48:35,340 - core.agent - INFO - System: DESKTOP-O304IOJ - Windows-10-10.0.19045-SP0
+2025-06-07 16:48:35,340 - core.connection - INFO - ✅ Server connection initialized
+2025-06-07 16:48:35,343 - core.scheduler - INFO - ✅ Task scheduler initialized
+2025-06-07 16:48:35,343 - utils.log_sender - INFO - ✅ Log sender initialized
+2025-06-07 16:48:35,344 - monitors.process_monitor - INFO - ✅ Process monitor initialized
+2025-06-07 16:48:35,344 - monitors.file_monitor - INFO - ✅ File monitor initialized
+2025-06-07 16:48:35,344 - monitors.network_monitor - INFO - ✅ Network monitor initialized
+2025-06-07 16:48:35,345 - actions.process_actions - INFO - ✅ Process actions initialized
+2025-06-07 16:48:35,345 - actions.notification_actions - INFO - ✅ Notification actions initialized
+2025-06-07 16:48:35,345 - core.agent - INFO - ✅ All components initialized
+2025-06-07 16:48:35,346 - core.agent - INFO - ✅ EDR Agent initialized
+2025-06-07 16:48:35,346 - core.agent - INFO - 🚀 Starting EDR Agent...
+2025-06-07 16:48:35,346 - core.connection - INFO - 🚀 Connecting to EDR Server: http://192.168.20.85:5000
+2025-06-07 16:48:35,394 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:48:35,443 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:48:35,607 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:48:35,686 - core.connection - INFO - 🔗 Connected to EDR Server
+2025-06-07 16:48:35,688 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:48:35,744 - core.connection - ERROR - ❌ Registration failed: 400 - {"code":500,"message":"Missing required field: version","status":"error","timestamp":"2025-06-07T16:48:34.474596"}
+
+2025-06-07 16:48:35,744 - core.agent - WARNING - ⚠️ Agent registration failed
+2025-06-07 16:48:35,747 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:48:35,748 - utils.log_sender - INFO - ✅ Log sender started
+2025-06-07 16:48:35,799 - monitors.process_monitor - INFO - 📊 Initialized with 127 existing processes
+2025-06-07 16:48:35,821 - monitors.process_monitor - INFO - 🔍 Process monitoring started
+2025-06-07 16:48:35,824 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:48:35,854 - core.agent - INFO - ✅ Process monitor started
+2025-06-07 16:48:35,951 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:48:35,951 - monitors.file_monitor - INFO - 👁️ Watching: C:\Windows\System32
+2025-06-07 16:48:35,966 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:48:35,976 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:48:35,983 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files
+2025-06-07 16:48:35,983 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:48:36,032 - monitors.file_monitor - INFO - 👁️ Watching: C:\Program Files (x86)
+2025-06-07 16:48:36,131 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\AppData
+2025-06-07 16:48:36,141 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\AppData
+2025-06-07 16:48:36,144 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\AppData
+2025-06-07 16:48:36,147 - monitors.file_monitor - ERROR - Failed to watch C:\Users\All Users\Desktop: [WinError 5] Access is denied.
+2025-06-07 16:48:36,154 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Desktop
+2025-06-07 16:48:36,158 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Desktop
+2025-06-07 16:48:36,160 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Desktop
+2025-06-07 16:48:36,162 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Desktop
+2025-06-07 16:48:36,176 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default\Downloads
+2025-06-07 16:48:36,186 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Default User\Downloads
+2025-06-07 16:48:36,191 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Manh\Downloads
+2025-06-07 16:48:36,193 - monitors.file_monitor - INFO - 👁️ Watching wildcard path: C:\Users\Public\Downloads
+2025-06-07 16:48:36,194 - monitors.file_monitor - INFO - 🔍 File monitoring started for 14 paths
+2025-06-07 16:48:36,194 - core.agent - INFO - ✅ File monitor started
+2025-06-07 16:48:36,195 - monitors.network_monitor - INFO - 📊 Initialized with 20 existing connections
+2025-06-07 16:48:36,204 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:48:36,204 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:48:36,210 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:48:36,218 - monitors.network_monitor - INFO - 🔍 Network monitoring started
+2025-06-07 16:48:36,218 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:48:36,225 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:48:36,228 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:48:36,264 - core.agent - INFO - ✅ Network monitor started
+2025-06-07 16:48:36,416 - core.agent - INFO - ✅ Data sender started
+2025-06-07 16:48:36,432 - core.agent - INFO - ✅ Heartbeat started
+2025-06-07 16:48:36,824 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:48:36,902 - core.agent - INFO - ✅ Rule checking started
+2025-06-07 16:48:36,951 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:48:36,961 - core.agent - INFO - ✅ EDR Agent started successfully
+2025-06-07 16:48:37,047 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:48:37,053 - ui.tray_icon - INFO - ✅ Icon directory and default icons created successfully
+2025-06-07 16:48:37,064 - ui.tray_icon - INFO - ✅ System tray icon initialized
+2025-06-07 16:48:37,068 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:48:37,083 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:48:37,177 - ui.tray_icon - INFO - ✅ System tray icon started
+2025-06-07 16:48:37,197 - __main__ - INFO - ✅ System tray started
+2025-06-07 16:48:37,249 - __main__ - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:48:37,690 - ui.tray_icon - ERROR - Error stopping system tray: 'SystemTrayIcon' object has no attribute 'notification_thread'
+2025-06-07 16:48:37,690 - ui.tray_icon - ERROR - Error stopping system tray: 'SystemTrayIcon' object has no attribute 'notification_thread'
+2025-06-07 16:48:37,690 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:48:37,690 - core.agent - INFO - 🛑 Stopping EDR Agent...
+2025-06-07 16:48:42,658 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:48:42,672 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:48:42,712 - monitors.process_monitor - INFO - 🛑 Process monitoring stopped
+2025-06-07 16:48:46,362 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:48:46,962 - monitors.file_monitor - INFO - 🛑 File monitoring stopped
+2025-06-07 16:48:51,213 - monitors.network_monitor - INFO - 🛑 Network monitoring stopped
+2025-06-07 16:48:56,374 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:48:56,380 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:48:56,386 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:48:56,387 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:48:56,402 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:48:56,873 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:48:56,873 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:48:56,873 - __main__ - INFO - ✅ Agent stopped successfully
+2025-06-07 16:49:01,235 - utils.log_sender - INFO - 🛑 Log sender stopped
+2025-06-07 16:49:01,239 - core.connection - WARNING - ⚠️ Disconnected from EDR Server
+2025-06-07 16:49:01,245 - core.connection - INFO - 🛑 Server connection stopped
+2025-06-07 16:49:01,245 - core.scheduler - INFO - ✅ Task scheduler stopped
+2025-06-07 16:49:01,245 - actions.notification_actions - INFO - 🗑️ Cleared 0 pending notifications
+2025-06-07 16:49:01,380 - actions.notification_actions - INFO - 🛑 Notification service stopped
+2025-06-07 16:49:01,380 - core.agent - INFO - ✅ EDR Agent stopped
+2025-06-07 16:49:01,380 - __main__ - INFO - ✅ Agent stopped successfully

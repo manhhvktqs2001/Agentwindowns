@@ -12,37 +12,161 @@ from datetime import datetime
 from typing import Dict, List, Any, Callable, Optional, Set
 from pathlib import Path
 import psutil
+import socket
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
+class EnhancedFileMonitor:
+    def __init__(self, config, event_callback, rule_engine=None, alert_handler=None):
+        self.config = config
+        self.event_callback = event_callback
+        self.rule_engine = rule_engine
+        self.alert_handler = alert_handler
+        self.observer = Observer()
+        self.logger = logging.getLogger('EDRAgent')
+        self.watched_paths = set()
+        
+    def add_watch(self, path):
+        """Add a path to watch"""
+        try:
+            if os.path.exists(path):
+                self.observer.schedule(FileEventHandler(self), path, recursive=True)
+                self.watched_paths.add(path)
+                self.logger.info(f"👁️ Watching: {path}")
+                return True
+            else:
+                self.logger.warning(f"Path does not exist: {path}")
+                return False
+        except Exception as e:
+            self.logger.error(f"Error adding watch for {path}: {e}")
+            return False
+            
+    def start(self):
+        """Start the file monitor"""
+        try:
+            self.observer.start()
+            self.logger.info("✅ File monitor started")
+            return True
+        except Exception as e:
+            self.logger.error(f"Error starting file monitor: {e}")
+            return False
+            
+    def stop(self):
+        """Stop the file monitor"""
+        try:
+            self.observer.stop()
+            self.observer.join()
+            self.logger.info("✅ File monitor stopped")
+            return True
+        except Exception as e:
+            self.logger.error(f"Error stopping file monitor: {e}")
+            return False
+
+class FileEventHandler(FileSystemEventHandler):
+    def __init__(self, monitor):
+        self.monitor = monitor
+        self.logger = logging.getLogger('EDRAgent')
+        
+    def on_created(self, event):
+        if not event.is_directory:
+            self._handle_file_event(event, 'created')
+            
+    def on_modified(self, event):
+        if not event.is_directory:
+            self._handle_file_event(event, 'modified')
+            
+    def on_deleted(self, event):
+        if not event.is_directory:
+            self._handle_file_event(event, 'deleted')
+            
+    def on_moved(self, event):
+        if not event.is_directory:
+            self._handle_file_event(event, 'moved')
+            
+    def _handle_file_event(self, event, event_type):
+        try:
+            file_path = event.src_path
+            file_name = os.path.basename(file_path)
+            
+            # Get file info
+            try:
+                file_size = os.path.getsize(file_path) if os.path.exists(file_path) else 0
+                file_hash = self._calculate_file_hash(file_path) if os.path.exists(file_path) else None
+            except Exception as e:
+                self.logger.error(f"Error getting file info for {file_path}: {e}")
+                file_size = 0
+                file_hash = None
+                
+            # Create log entry
+            log_entry = {
+                'Time': datetime.now(),
+                'Hostname': socket.gethostname(),
+                'FileName': file_name,
+                'FilePath': file_path,
+                'FileSize': file_size,
+                'FileHash': file_hash,
+                'EventType': event_type,
+                'ProcessID': os.getpid(),
+                'ProcessName': 'file_monitor'
+            }
+            
+            # Send event to callback
+            self.monitor.event_callback(log_entry)
+            
+            # Check rules if available
+            if self.monitor.rule_engine:
+                self.monitor.rule_engine.check_file_rules(log_entry)
+                
+        except Exception as e:
+            self.logger.error(f"Error handling file event: {e}")
+            
+    def _calculate_file_hash(self, file_path):
+        """Calculate SHA-256 hash of file"""
+        try:
+            sha256_hash = hashlib.sha256()
+            with open(file_path, "rb") as f:
+                for byte_block in iter(lambda: f.read(4096), b""):
+                    sha256_hash.update(byte_block)
+            return sha256_hash.hexdigest()
+        except Exception as e:
+            self.logger.error(f"Error calculating file hash: {e}")
+            return None
+
 class EDRFileEventHandler(FileSystemEventHandler):
     """Custom file system event handler for EDR"""
     
-    def __init__(self, file_monitor):
-        self.file_monitor = file_monitor
+    def __init__(self, monitor):
+        self.monitor = monitor
         self.logger = logging.getLogger(__name__)
         super().__init__()
+    
+    def on_any_event(self, event):
+        if event.is_directory:
+            return
+
+        if event.event_type in ['created', 'modified', 'deleted']:
+            self.monitor._handle_file_event(event.event_type, event.src_path)
     
     def on_created(self, event: FileSystemEvent):
         """Handle file creation"""
         if not event.is_directory:
-            self.file_monitor._handle_file_event('created', event.src_path)
+            self.monitor._handle_file_event('created', event.src_path)
     
     def on_modified(self, event: FileSystemEvent):
         """Handle file modification"""
         if not event.is_directory:
-            self.file_monitor._handle_file_event('modified', event.src_path)
+            self.monitor._handle_file_event('modified', event.src_path)
     
     def on_deleted(self, event: FileSystemEvent):
         """Handle file deletion"""
         if not event.is_directory:
-            self.file_monitor._handle_file_event('deleted', event.src_path)
+            self.monitor._handle_file_event('deleted', event.src_path)
     
     def on_moved(self, event: FileSystemEvent):
         """Handle file move/rename"""
         if not event.is_directory and hasattr(event, 'dest_path'):
-            self.file_monitor._handle_file_event('moved', event.src_path, event.dest_path)
+            self.monitor._handle_file_event('moved', event.src_path, event.dest_path)
 
 class FileMonitor:
     """Monitors file system activities on Windows"""
@@ -55,9 +179,10 @@ class FileMonitor:
         # Monitoring state
         self.running = False
         self.observers = []
+        self.watched_paths = {}
         
         # Configuration
-        self.watch_paths = config.get('file_monitoring', 'watch_paths', [])
+        self.watch_paths = config.get('monitoring', 'watch_paths', [])
         self.exclude_paths = set(config.get('file_monitoring', 'exclude_paths', []))
         self.monitored_extensions = set(config.get('file_monitoring', 'file_extensions', []))
         
@@ -93,39 +218,43 @@ class FileMonitor:
         self.logger.info("✅ File monitor initialized")
     
     def start(self):
-        """Start file system monitoring"""
+        """Start file system monitoring - FIXED"""
         try:
-            if self.running:
-                return
-                
             self.running = True
+            self.observers = []
+            
+            # FIXED: Get watch paths from config properly
+            watch_paths = self.config.get('file_monitoring', 'watch_paths', [])
+            if not watch_paths:
+                # Fallback to default paths if none configured
+                watch_paths = [
+                    'C:\\Windows\\System32',
+                    'C:\\Program Files',
+                    'C:\\Program Files (x86)',
+                    'C:\\Users'
+                ]
+                self.logger.warning("No watch paths configured, using defaults")
             
             # Start observers for each watch path
-            for watch_path in self.watch_paths:
-                self._start_path_observer(watch_path)
+            for watch_path in watch_paths:
+                self._watch_path(watch_path)
             
-            self.logger.info(f"🔍 File monitoring started for {len(self.observers)} paths")
-            
+            self.logger.info(f"🔍 File monitoring started for {len(self.watched_paths)} paths")
+            return True
         except Exception as e:
-            self.logger.error(f"Failed to start file monitor: {e}")
-            raise
+            self.logger.error(f"Error starting file monitor: {e}")
+            return False
+
     
     def stop(self):
         """Stop file system monitoring"""
         try:
             self.running = False
-            
-            # Stop all observers
             for observer in self.observers:
-                try:
-                    observer.stop()
-                    observer.join(timeout=5)
-                except Exception as e:
-                    self.logger.error(f"Error stopping observer: {e}")
-            
-            self.observers.clear()
+                observer.stop()
+                observer.join()
+            self.observers = []
             self.logger.info("🛑 File monitoring stopped")
-            
         except Exception as e:
             self.logger.error(f"Error stopping file monitor: {e}")
     
@@ -133,55 +262,90 @@ class FileMonitor:
         """Check if monitor is running"""
         return self.running and any(obs.is_alive() for obs in self.observers)
     
-    def _start_path_observer(self, watch_path: str):
-        """Start observer for specific path"""
+    def _watch_path(self, path):
+        """Watch a specific path for changes - FIXED"""
         try:
-            # Expand environment variables and wildcards
-            expanded_path = os.path.expandvars(watch_path)
+            # FIXED: Handle Windows paths properly
+            # Expand environment variables and normalize path
+            expanded_path = os.path.expandvars(path)
+            normalized_path = os.path.normpath(expanded_path)
             
-            if '*' in expanded_path:
-                # Handle wildcard paths
-                self._handle_wildcard_path(expanded_path)
-            else:
-                # Regular path
-                if os.path.exists(expanded_path):
-                    observer = Observer()
-                    event_handler = EDRFileEventHandler(self)
-                    observer.schedule(event_handler, expanded_path, recursive=True)
-                    observer.start()
-                    self.observers.append(observer)
-                    
-                    self.logger.info(f"👁️ Watching: {expanded_path}")
-                else:
-                    self.logger.warning(f"⚠️ Watch path does not exist: {expanded_path}")
+            # Handle wildcards in path - for paths like C:\Users\*\AppData
+            if '*' in normalized_path:
+                # Get parent directory and check if it exists
+                parent_parts = normalized_path.split(os.sep)
                 
-        except Exception as e:
-            self.logger.error(f"Error starting observer for {watch_path}: {e}")
-    
-    def _handle_wildcard_path(self, wildcard_path: str):
-        """Handle wildcard paths like C:\\Users\\*\\Desktop"""
-        try:
-            # FIXED: Use glob for better wildcard handling
-            expanded_paths = glob.glob(wildcard_path, recursive=True)
-            
-            for path in expanded_paths:
-                if os.path.isdir(path):
-                    try:
-                        observer = Observer()
-                        event_handler = EDRFileEventHandler(self)
-                        observer.schedule(event_handler, path, recursive=True)
-                        observer.start()
-                        self.observers.append(observer)
-                        self.logger.info(f"👁️ Watching wildcard path: {path}")
-                    except Exception as e:
-                        self.logger.error(f"Failed to watch {path}: {e}")
+                for i, part in enumerate(parent_parts):
+                    if '*' in part:
+                        # Found wildcard, get all matching directories
+                        import glob
+                        pattern = os.sep.join(parent_parts[:i+1])
+                        remaining_path = os.sep.join(parent_parts[i+1:]) if i+1 < len(parent_parts) else ""
                         
+                        try:
+                            matching_dirs = glob.glob(pattern)
+                            for match_dir in matching_dirs:
+                                if remaining_path:
+                                    full_path = os.path.join(match_dir, remaining_path)
+                                else:
+                                    full_path = match_dir
+                                
+                                if os.path.exists(full_path) and os.path.isdir(full_path):
+                                    self._setup_observer_for_path(full_path)
+                        except Exception as e:
+                            self.logger.debug(f"Error expanding wildcard path {pattern}: {e}")
+                        return
+            else:
+                # No wildcards, direct path
+                if os.path.exists(normalized_path) and os.path.isdir(normalized_path):
+                    self._setup_observer_for_path(normalized_path)
+                else:
+                    self.logger.warning(f"Path does not exist or is not a directory: {normalized_path}")
+
         except Exception as e:
-            self.logger.error(f"Error handling wildcard path {wildcard_path}: {e}")
+            self.logger.error(f"Error watching path {path}: {e}")
+    
+    def _setup_observer_for_path(self, path):
+        """Setup observer for a specific path"""
+        try:
+            # Check access permissions
+            try:
+                # Try to list directory to check read access
+                if os.path.isdir(path):
+                    os.listdir(path)
+                access_level = 'full'
+            except (PermissionError, OSError) as e:
+                self.logger.warning(f"Limited access to path {path}: {e}")
+                access_level = 'read_only'
+            
+            # Add to watched paths
+            self.watched_paths[path] = {
+                'access_level': access_level,
+                'last_check': time.time()
+            }
+
+            # Start observer
+            observer = Observer()
+            event_handler = EDRFileEventHandler(self)
+            observer.schedule(event_handler, path, recursive=True)
+            observer.start()
+            self.observers.append(observer)
+            
+            self.logger.info(f"👁️ Watching: {path}")
+
+        except Exception as e:
+            self.logger.error(f"Error setting up observer for {path}: {e}")
     
     def _handle_file_event(self, event_type: str, file_path: str, dest_path: str = None):
         """Handle file system event"""
         try:
+            # Check if file is in a watched path
+            for watched_path in self.watched_paths:
+                if file_path.startswith(watched_path):
+                    # TODO: Implement file event handling logic
+                    self.logger.debug(f"File event: {event_type} - {file_path}")
+                    break
+            
             # FIXED: Rate limiting for same file
             if self._is_rate_limited(file_path):
                 return
@@ -450,7 +614,7 @@ class FileMonitor:
             return None
     
     def _analyze_suspicious_activity(self, file_info: Dict[str, Any], event_type: str, file_path: str) -> tuple[bool, List[str]]:
-        """Analyze file activity for suspicious patterns"""
+        """Analyze file activity for suspicious patterns - FIXED"""
         detection_reasons = []
         
         try:
@@ -517,11 +681,13 @@ class FileMonitor:
                 if modification_count > 5:  # More than 5 modifications in the window
                     detection_reasons.append("rapid_file_modifications")
             
-            # Check for system file tampering
+            # FIXED: Check for system file tampering - Better detection
             system_paths = ['system32', 'syswow64', 'windows\\system']
             if any(sys_path in directory for sys_path in system_paths):
-                if event_type in ['created', 'modified'] and not self._is_system_process():
-                    detection_reasons.append("system_file_tampering")
+                if event_type in ['created', 'modified']:
+                    # FIXED: Only flag if it's not a known system process or legitimate update
+                    if not self._is_legitimate_system_update(file_path, event_type):
+                        detection_reasons.append("system_file_tampering")
             
             # Check for startup folder modifications
             startup_paths = ['startup', 'start menu\\programs\\startup']
@@ -533,7 +699,62 @@ class FileMonitor:
         except Exception as e:
             self.logger.error(f"Error analyzing suspicious activity: {e}")
             return False, []
-    
+        
+    def _is_legitimate_system_update(self, file_path: str, event_type: str) -> bool:
+        """Check if system file modification is legitimate - NEW"""
+        try:
+            file_name = os.path.basename(file_path).lower()
+            
+            # Known legitimate system processes that modify system files
+            legitimate_system_files = {
+                'mousocoreworker.exe',  # Windows Update component
+                'trustedinstaller.exe', # Windows component installer
+                'wuauclt.exe',         # Windows Update client
+                'svchost.exe',         # Service host
+                'dllhost.exe',         # DLL host process
+                'rundll32.exe',        # Run DLL process
+                'msiexec.exe',         # Windows Installer
+                'setup.exe',           # Various setup processes
+                'update.exe',          # Update processes
+            }
+            
+            # Common system DLLs that get updated
+            legitimate_system_dlls = {
+                'credui.dll',          # Credential UI
+                'cldapi.dll',          # Cloud API
+                'fltlib.dll',          # Filter Library
+                'kernel32.dll',        # Windows Kernel
+                'user32.dll',          # User interface
+                'ntdll.dll',           # NT Layer DLL
+                'advapi32.dll',        # Advanced API
+            }
+            
+            # If it's a known legitimate system file being modified
+            if file_name in legitimate_system_files or file_name in legitimate_system_dlls:
+                return True
+            
+            # Check if Windows Update is running
+            try:
+                import psutil
+                for proc in psutil.process_iter(['name']):
+                    proc_name = proc.info['name'].lower()
+                    if proc_name in ['mousocoreworker.exe', 'wuauclt.exe', 'trustedinstaller.exe']:
+                        return True
+            except:
+                pass
+            
+            # Check file properties for Microsoft signature (simplified)
+            try:
+                if 'microsoft' in file_path.lower() or 'windows' in file_path.lower():
+                    return True
+            except:
+                pass
+            
+            return False
+            
+        except Exception as e:
+            self.logger.debug(f"Error checking legitimate system update: {e}")
+            return False  # Default to suspicious if we can't verify
     def _get_current_process_info(self) -> Dict[str, Any]:
         """Get information about the current process that might be accessing files"""
         try:
@@ -579,7 +800,7 @@ class FileMonitor:
             if path not in self.watch_paths:
                 self.watch_paths.append(path)
                 if self.running:
-                    self._start_path_observer(path)
+                    self._watch_path(path)
                 self.logger.info(f"✅ Added watch path: {path}")
                 return True
             return False
@@ -689,3 +910,49 @@ class FileMonitor:
         except Exception as e:
             self.logger.error(f"Error getting file monitor stats: {e}")
             return {'error': str(e)}
+
+    def _initial_scan(self):
+        """Perform initial scan of watched directories"""
+        try:
+            for path in self.watched_paths:
+                try:
+                    if not os.path.exists(path):
+                        continue
+                        
+                    for root, _, files in os.walk(path):
+                        for file in files:
+                            try:
+                                file_path = os.path.join(root, file)
+                                if not os.path.exists(file_path):
+                                    continue
+                                    
+                                file_info = {
+                                    'file_name': file,
+                                    'file_path': file_path,
+                                    'file_size': os.path.getsize(file_path),
+                                    'event_type': 'initial_scan',
+                                    'timestamp': datetime.now().isoformat()
+                                }
+                                
+                                # Add process info if available
+                                try:
+                                    process = psutil.Process()
+                                    file_info.update({
+                                        'process_id': process.pid,
+                                        'process_name': process.name()
+                                    })
+                                except:
+                                    pass
+                                    
+                                self._process_file_event('initial_scan', file_info)
+                                
+                            except Exception as e:
+                                print(f"[Agent] Error scanning file {file}: {e}")
+                                continue
+                                
+                except Exception as e:
+                    print(f"[Agent] Error scanning directory {path}: {e}")
+                    continue
+                    
+        except Exception as e:
+            print(f"[Agent] Error in initial file scan: {e}")

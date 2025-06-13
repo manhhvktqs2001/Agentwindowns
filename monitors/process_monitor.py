@@ -14,6 +14,8 @@ import win32api
 import win32con
 import win32process
 import win32security
+import win32gui
+import json
 
 class ProcessMonitor:
     """Monitors process activities on Windows system"""
@@ -47,22 +49,19 @@ class ProcessMonitor:
         """Start process monitoring"""
         try:
             if self.running:
-                return
-                
+                self.logger.warning("ProcessMonitor.start() called but already running.")
+                return False
             self.running = True
-            
             # Initialize known processes
             self._initialize_process_list()
-            
             # Start monitoring thread
             self.monitor_thread = threading.Thread(target=self._monitor_loop, daemon=True)
             self.monitor_thread.start()
-            
             self.logger.info("🔍 Process monitoring started")
-            
+            return True
         except Exception as e:
             self.logger.error(f"Failed to start process monitor: {e}")
-            raise
+            return False
     
     def stop(self):
         """Stop process monitoring"""
@@ -649,3 +648,17 @@ class ProcessMonitor:
         except Exception as e:
             self.logger.error(f"Error getting process monitor stats: {e}")
             return {'error': str(e)}
+
+    def _wnd_proc(self, hwnd, msg, wparam, lparam):
+        """Window procedure for process monitoring"""
+        try:
+            if msg == win32con.WM_COPYDATA:
+                # Process the data
+                cds = win32gui.PyCOPYDATASTRUCT(lparam)
+                if cds.dwData == self.WM_COPYDATA_ID:
+                    data = json.loads(cds.lpData)
+                    self._handle_process_event(data)
+            return 0  # Return 0 for unhandled messages
+        except Exception as e:
+            self.logger.error(f"Error in window procedure: {e}")
+            return 0  # Return 0 in case of error
